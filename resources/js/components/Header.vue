@@ -1,86 +1,95 @@
 <script setup lang="ts">
 import Nav from '@/components/Nav.vue';
 import BackgroundStars from '@/components/BackgroundStars.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 </script>
 
 <template>
+    <BackgroundStars ref="stars" />
 
-  <BackgroundStars ref="stars" />
+    <div class="intro-wrapper">
+        <div class="intro-backdrop"></div>
 
-  <div class="intro-wrapper">
-      <div class="intro-backdrop"></div>
+        <div class="intro">
+            <div class="profile-avatar-wrapper">
+                <div class="profile-avatar-backdrop"></div>
+                <img src="/images/profile-avatar.png" alt="Jon Russell" class="profile-avatar" />
 
-    <div class="intro">
-      <div class="profile-avatar-wrapper">
-        <div class="profile-avatar-backdrop"></div>
-        <img src="/images/profile-avatar.png"  alt="Jon Russell" class="profile-avatar">
-      </div>
-      <h1>Welcome! I'm</h1>
-      <h1 class="name">Jon Russell.</h1>
-      <p>
-        A <strong>full-stack software engineer</strong>
-        who creates robust, scalable solutions that power modern web applications.
-      </p>
-
-
+                <div class="profile-icons">
+                    <a href="https://www.linkedin.com/in/russell-jonathan/">
+                        <FontAwesomeIcon icon="fa-brands fa-linkedin" size="xl" />
+                    </a>
+                    <a href="./contact">
+                        <FontAwesomeIcon icon="fa-regular fa-envelope" size="lg" />
+                    </a>
+                </div>
+            </div>
+            <h1>Welcome! I'm</h1>
+            <h1 class="name">Jon Russell.</h1>
+            <p>
+                A <strong>full-stack software engineer</strong>
+                who creates robust, scalable solutions that power modern web applications.
+            </p>
+        </div>
     </div>
-  </div>
 
-  <Nav ref="navigation" />
-
+    <Nav ref="navigation" />
 </template>
 
 <style scoped>
 @reference "../../css/app.css";
 
 .intro-wrapper {
-  @apply w-full text-white;
-  /*@apply w-full px-4 sm:px-6 lg:px-8 text-white;*/
-  /*@apply backdrop-opacity-5 bg-radial-[at_70%_50%] from-white/45 to-transparent to-65%;*/
+    @apply w-full text-white;
+    /*@apply w-full px-4 sm:px-6 lg:px-8 text-white;*/
+    /*@apply backdrop-opacity-5 bg-radial-[at_70%_50%] from-white/45 to-transparent to-65%;*/
 
-    //background:
-  //  radial-gradient(at 96% 48%, #041028 0px, transparent 50%),
-  //  radial-gradient(at 100% 1%, #111b4f 0px, transparent 60%),
-  //  radial-gradient(at 100% 99%, #330509 0px, transparent 50%),
-  //  #041028;
+    //background: //  radial-gradient(at 96% 48%, #041028 0px, transparent 50%),
+        //  radial-gradient(at 100% 1%, #111b4f 0px, transparent 60%),
+        //  radial-gradient(at 100% 99%, #330509 0px, transparent 50%),
+        //  #041028;
 }
 
 .intro-backdrop {
     /*@apply absolute h-80 w-full mt-8 bg-white rounded-sm backdrop-filter backdrop-blur-lg opacity-5;*/
-    @apply absolute h-80 w-full mt-8;
+    @apply absolute mt-8 h-80 w-full;
 }
 
 .intro {
-  @apply pt-20 pb-6 w-5/8 mx-auto;
+    @apply mx-auto w-5/8 pt-20 pb-6;
     /*border-top: 2px solid dimgray;*/
     //border-bottom: 1px solid dimgray;
 }
 
 h1 {
-  @apply text-6xl text-nowrap text-blue;
+    @apply text-6xl text-nowrap text-blue;
 
     &.name {
-        @apply text-right text-white tracking-tight font-bold;
+        @apply text-right font-bold tracking-tight text-white;
     }
 }
 
 p {
-  @apply text-2xl mb-8 mt-9 w-5/6 ms-10 text-terminal-black-50 -indent-8;
+    @apply ms-10 mt-9 mb-8 w-5/6 -indent-8 text-2xl text-terminal-black-50;
 
-  strong {
-    @apply text-4xl text-white tracking-tight font-bold px-3;
-  }
+    strong {
+        @apply px-3 text-4xl font-bold tracking-tight text-white;
+    }
 }
 
 .profile-avatar-wrapper {
-  @apply flex w-46 h-50 rounded-full float-right items-center justify-center;
+    @apply flex flex-col items-center justify-center h-50 w-46 rounded-full float-right;
+  /*@apply flex w-46 h-50 rounded-full float-right items-center justify-center;*/
 }
 
 .profile-avatar-backdrop {
-  @apply bg-white/20 w-38 h-38 border-2 border-secondary backdrop-blur-sm backdrop-opacity-50 backdrop-saturate-100 absolute z-30;
+    @apply absolute z-30 h-38 w-38 border-2 border-secondary bg-white/20 backdrop-blur-sm backdrop-opacity-50 backdrop-saturate-100;
 }
 
 .profile-avatar {
-  @apply w-full h-full rounded-full m-1 object-cover z-40;
+    @apply z-40 m-1 h-full w-full rounded-full object-cover;
+}
+.profile-icons {
+    @apply mt-2;
 }
 </style>
