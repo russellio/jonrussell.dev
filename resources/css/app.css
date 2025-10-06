@@ -1,39 +1,99 @@
 @import 'tailwindcss';
+@import '@fontsource/space-mono';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
-@theme inline {
-    --font-sans: Instrument Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+@theme {
+    --font-space-mono: "Space Mono", "monospace";
+
+    /*--color-primary: #3a78e3;*/
+    --color-primary: --color-blue;
+    --color-secondary: #af2533;
+
+    --color-blue: #1564f4;
+    --color-dark-blue: #041028;
+
+    --color-blue-50: #e3e7ee;
+    --color-blue-100: #c8d0dc;
+    --color-blue-200: #adb9cb;
+    --color-blue-300: #93a2ba;
+    --color-blue-400: #7a8ca9;
+    --color-blue-500: #627799;
+    --color-blue-600: #4a6188;
+    --color-blue-700: #334d77;
+    --color-blue-800: #1d3867;
+    --color-blue-900: #062456;
+    --color-blue-950: #041028;
+
+    /*--color-blue-50: #edf0fd;*/
+    /*--color-blue-100: #dbe2fb;*/
+    /*--color-blue-200: #bac8f7;*/
+    /*--color-blue-300: #93acf3;*/
+    /*--color-blue-400: #6791ef;*/
+    /*--color-blue-500: #3a78e3;*/
+    /*--color-blue-600: #2c5eb4;*/
+    /*--color-blue-700: #20478b;*/
+    /*--color-blue-800: #143163;*/
+    /*--color-blue-900: #081a3b;*/
+    /*--color-blue-950: #041028;*/
+
+    --color-green: #45f415;
+    --color-red: #f50538;
+
+
+    --color-burgundy: #891b26;
+    --color-burgundy-50: #fdf1f1;
+    --color-burgundy-100: #fadfe0;
+    --color-burgundy-200: #f7c2c4;
+    --color-burgundy-300: #f49fa3;
+    --color-burgundy-400: #f17980;
+    --color-burgundy-500: #ef4957;
+    --color-burgundy-600: #d63041;
+    --color-burgundy-700: #af2533;
+    --color-burgundy-800: #891b26;
+    --color-burgundy-900: #4e0b12;
+    --color-burgundy-950: #350509;
+
+    --color-terminal-black: #2e2f30;
+    --color-terminal-black-50: #f3f4f4;
+    --color-terminal-black-100: #e7e8e9;
+    --color-terminal-black-200: #cdcfd1;
+    --color-terminal-black-300: #b6b9bc;
+    --color-terminal-black-400: #9ea1a4;
+    --color-terminal-black-500: #898c8e;
+    --color-terminal-black-600: #737577;
+    --color-terminal-black-700: #5f6163;
+    --color-terminal-black-800: #4a4b4d;
+    --color-terminal-black-900: #38393a;
+    --color-terminal-black-950: #2e2f30;
 }
 
-
-/* Custom styles for the portfolio */
+h1 {
+    @apply text-2xl text-blue-300 font-space-mono;
+}
+h2 {
+    @apply text-4xl text-secondary uppercase text-center font-space-mono font-bold;
+}
 html {
     scroll-behavior: smooth;
 }
-
 body {
-    /*font-family: 'Inter', sans-serif;*/
+    @apply bg-terminal-black;
 }
 
 .btn-primary {
-    background-color: #dc2626;
-    color: white;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    @apply bg-secondary font-space-mono uppercase py-1 px-7 mx-4 rounded-xl text-white font-bold;
+    border-radius: 0.3rem;
     transition: background-color 0.2s;
 }
 
 .btn-primary:hover {
-    background-color: #b91c1c;
+    @apply bg-primary
 }
 
 .btn-secondary {
-    background-color: #0284c7;
-    color: white;
-    font-weight: 500;
+    @apply bg-blue text-white font-bold;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     transition: background-color 0.2s;
@@ -44,59 +104,34 @@ body {
 }
 
 .card {
-    background-color: white;
+    @apply bg-white shadow-xl overflow-hidden;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     transition: box-shadow 0.3s;
-}
 
+    h1 {
+        @apply text-3xl font-extrabold text-secondary;
+        /*@apply bg-gradient-to-b from-blue-900 to-blue-400 bg-clip-text text-transparent;*/
+        /*@apply drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)];*/
+    }
+}
 .card:hover {
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+    transform: translateY(-0.4rem);
 }
 
-.card-hover {
-    transition: transform 0.3s;
+.text-outline {
+    text-shadow:
+        -1px 0 1px var(--color-blue-50),
+        1px 0 1px var(--color-blue-50),
+        0 0 1px var(--color-blue-50),
+        -1px -1px 1px var(--color-blue-50),
+        1px -1px 1px var(--color-blue-50),
+        0 -1px 1px var(--color-blue-50),
+        -1px 1px 1px var(--color-blue-50),
+        1px 1px 1px var(--color-blue-50),
+        0 1px 1px var(--color-blue-50);
 }
 
-.card-hover:hover {
-    transform: translateY(-0.25rem);
+.section-wrapper {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
-
-.profile-pic-wrapper {
-    width: 9rem;
-    height: 9rem;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    float: right;
-    border: 2px solid #dc2626;
-    margin-left: 2rem;
-    margin-top: 0.25rem;
-}
-
-.profile-pic {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/*.profile-pic-wrapper {*/
-/*  width: 150px;*/
-/*  height: 150px;*/
-/*  border-radius: 100%;*/
-/*  overflow: hidden;*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*  float: right;*/
-/*  border: 2px solid red;*/
-/*  margin: 5px 0 0 30px;*/
-/*}*/
-
-/*.profile-pic {*/
-/*  width: 100%;*/
-/*  height: 100%;*/
-/*  object-fit: cover;*/
-/*}*/

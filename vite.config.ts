@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
+// import { withMT } from '@material-tailwind/html';
 
 export default defineConfig({
     plugins: [
@@ -12,6 +13,7 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
+        // withMT(tailwindcss()),
         vue({
             template: {
                 transformAssetUrls: {
