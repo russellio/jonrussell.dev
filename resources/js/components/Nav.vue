@@ -1,19 +1,19 @@
 <script setup lang="ts">
 
-const navigation = [
-  {
-    name: "About",
-    route: "/about"
-  },
-  {
-    name: "Projects",
-    route: "/projects"
-  },
-  {
-    name: "Contact",
-    route: "/contact"
-  }
-]
+// const navigation = [
+//   {
+//     name: "About",
+//     route: "/about"
+//   },
+//   {
+//     name: "Projects",
+//     route: "/projects"
+//   },
+//   {
+//     name: "Contact",
+//     route: "/contact"
+//   }
+// ]
 </script>
 
 <template>
