@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import Nav from '@/components/Nav.vue';
 import BackgroundStars from '@/components/BackgroundStars.vue';
+import Contact from '@/pages/Contact.vue'
+import { openModal } from '@/composables/modal';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+library.add(faLinkedin, faEnvelope, faXmark);
+
 </script>
 
 <template>
@@ -15,13 +24,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
                 <div class="profile-avatar-backdrop"></div>
                 <img src="/images/profile-avatar.png" alt="Jon Russell" class="profile-avatar" />
 
-                <div class="profile-icons">
+                <div class="profile-icons z-50">
                     <a href="https://www.linkedin.com/in/russell-jonathan/">
                         <FontAwesomeIcon icon="fa-brands fa-linkedin" size="xl" />
                     </a>
-                    <a href="./contact">
-                        <FontAwesomeIcon icon="fa-regular fa-envelope" size="lg" />
-                    </a>
+<!--                    <a data-dialog-target="contact-modal" @click="openModal('modal-contact')" class="cursor-pointer">-->
+<!--                        <FontAwesomeIcon icon="fa-regular fa-envelope" size="lg" />-->
+<!--                    </a>-->
                 </div>
             </div>
             <h1>Welcome! I'm</h1>
@@ -32,6 +41,9 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
             </p>
         </div>
     </div>
+
+    <!-- Contact Modal -->
+<!--    <Contact :modalId="'contact'" />-->
 
     <Nav ref="navigation" />
 </template>
@@ -57,8 +69,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 .intro {
     @apply mx-auto w-5/8 pt-20 pb-6;
-    /*border-top: 2px solid dimgray;*/
-    //border-bottom: 1px solid dimgray;
 }
 
 h1 {
@@ -89,7 +99,8 @@ p {
 .profile-avatar {
     @apply z-40 m-1 h-full w-full rounded-full object-cover;
 }
+
 .profile-icons {
-    @apply mt-2;
+    @apply mt-2 flex text-right;
 }
 </style>

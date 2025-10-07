@@ -18,20 +18,19 @@ const navigation = [
 
 <template>
   <!-- Navigation -->
-  <nav class="mb-6">
+  <nav class="mb-6 overflow-visible">
     <div class="section-wrapper sticky top-0">
-<!--        <div class="nav-backdrop"></div>-->
       <div class="flex items-center justify-center nav-backdrop">
 
         <div class="hidden md:block">
-          <button
-            v-for="item in navigation"
-            :key="item.name"
-            @click="scrollToSection(item.route)"
-            class="btn-primary"
-          >
-            {{ item.name }}
-          </button>
+<!--          <button-->
+<!--            v-for="item in navigation"-->
+<!--            :key="item.name"-->
+<!--            @click="scrollToSection(item.route)"-->
+<!--            class="btn-primary"-->
+<!--          >-->
+<!--            {{ item.name }}-->
+<!--          </button>-->
         </div>
 
 <!--        <div class="hidden md:block">-->

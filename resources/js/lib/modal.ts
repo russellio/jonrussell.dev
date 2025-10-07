@@ -1,7 +1,7 @@
 /**
  * Global modal toggle function
  * Toggles the visibility of a modal by its ID
- * @param modalId - The ID of the modal to toggle (e.g., 'modal-project-digital')
+ * @param modalId - The ID of the modal to toggle
  */
 export function toggleModal(modalId: string): void {
     const modal = document.getElementById(modalId);
@@ -11,7 +11,7 @@ export function toggleModal(modalId: string): void {
     }
 
     const isVisible = !modal.classList.contains('opacity-0');
-    
+
     if (isVisible) {
         // Close modal
         modal.classList.add('opacity-0', 'pointer-events-none');

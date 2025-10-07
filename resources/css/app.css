@@ -7,12 +7,13 @@
 @theme {
     --font-space-mono: "Space Mono", "monospace";
 
-    /*--color-primary: #3a78e3;*/
-    --color-primary: --color-blue;
-    --color-secondary: #af2533;
+    --color-primary: var(--color-blue);
+    --color-secondary: var(--color-burgundy-600);
+    --color-success: var(--color-bright-green);
+    --color-error: var(--color-red);
 
     --color-blue: #1564f4;
-    --color-dark-blue: #041028;
+    --color-dark-blue: --color-blue-950;
 
     --color-blue-50: #e3e7ee;
     --color-blue-100: #c8d0dc;
@@ -26,23 +27,10 @@
     --color-blue-900: #062456;
     --color-blue-950: #041028;
 
-    /*--color-blue-50: #edf0fd;*/
-    /*--color-blue-100: #dbe2fb;*/
-    /*--color-blue-200: #bac8f7;*/
-    /*--color-blue-300: #93acf3;*/
-    /*--color-blue-400: #6791ef;*/
-    /*--color-blue-500: #3a78e3;*/
-    /*--color-blue-600: #2c5eb4;*/
-    /*--color-blue-700: #20478b;*/
-    /*--color-blue-800: #143163;*/
-    /*--color-blue-900: #081a3b;*/
-    /*--color-blue-950: #041028;*/
-
-    --color-green: #45f415;
+    --color-bright-green: #45f415;
     --color-red: #f50538;
 
-
-    --color-burgundy: #891b26;
+    --color-burgundy: #ef4957;
     --color-burgundy-50: #fdf1f1;
     --color-burgundy-100: #fadfe0;
     --color-burgundy-200: #f7c2c4;
@@ -83,9 +71,8 @@ body {
 }
 
 .btn-primary {
-    @apply bg-secondary font-space-mono uppercase py-1 px-7 mx-4 rounded-xl text-white font-bold;
-    border-radius: 0.3rem;
-    transition: background-color 0.2s;
+    @apply bg-secondary font-space-mono uppercase py-1 px-7 mx-4 rounded-md text-white font-bold;
+    @apply transition-[background-color] duration-200;
 }
 
 .btn-primary:hover {
@@ -93,20 +80,15 @@ body {
 }
 
 .btn-secondary {
-    @apply bg-blue text-white font-bold;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    transition: background-color 0.2s;
+    @apply bg-blue text-white rounded-md font-bold px-0.5 py-1 transition-[background-color] duration-200;
 }
 
 .btn-secondary:hover {
-    background-color: #0369a1;
+    @apply bg-bright-green;
 }
 
 .card {
-    @apply bg-white shadow-xl overflow-hidden;
-    border-radius: 0.5rem;
-    transition: box-shadow 0.3s;
+    @apply bg-white shadow-lg overflow-hidden rounded-md transition-shadow duration-300;
 
     h1 {
         @apply text-3xl font-extrabold text-secondary;
@@ -115,6 +97,7 @@ body {
     }
 }
 .card:hover {
+    @apply shadow-2xl;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5);
     transform: translateY(-0.4rem);
 }
@@ -134,4 +117,35 @@ body {
 
 .section-wrapper {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section-top, .section-bottom {
+    @apply absolute left-0 overflow-hidden;
+    width: 101%;
+    line-height: 0;
+
+    svg {
+        position: relative;
+        display: block;
+        width: 115%;
+        height: 70px;
+    }
+
+    .shape-fill {
+        fill: #041028;
+    }
+}
+
+.section-top {
+    top: 0;
+    transform: rotate(180deg);
+}
+
+.section-bottom {
+    bottom: 0;
+    transform: scaleX(-1);
+
+    svg {
+        height: 55px;
+    }
 }

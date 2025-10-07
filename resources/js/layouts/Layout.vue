@@ -5,14 +5,14 @@ import Footer from '@/components/Footer.vue'
 </script>
 
 <template>
-  <div class="app-layout gap-0">
+  <div class="app-layout">
     <header>
       <!-- Header / Intro / Navigation -->
       <Header ref="header" />
     </header>
 
     <!-- Main content -->
-    <main class="relative">
+    <main ref="main" class="relative">
       <slot />
     </main>
 
