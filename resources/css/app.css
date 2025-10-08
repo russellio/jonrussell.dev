@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '@fontsource/space-mono';
+@import "@nuxt/ui";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -13,7 +14,8 @@
     --color-error: var(--color-red);
 
     --color-blue: #1564f4;
-    --color-dark-blue: --color-blue-950;
+    --color-dark-blue: var(--color-blue-950);
+    --color-content: var(--color-terminal-black-50);
 
     --color-blue-50: #e3e7ee;
     --color-blue-100: #c8d0dc;
@@ -117,35 +119,4 @@ body {
 
 .section-wrapper {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
-.section-top, .section-bottom {
-    @apply absolute left-0 overflow-hidden;
-    width: 101%;
-    line-height: 0;
-
-    svg {
-        position: relative;
-        display: block;
-        width: 115%;
-        height: 70px;
-    }
-
-    .shape-fill {
-        fill: #041028;
-    }
-}
-
-.section-top {
-    top: 0;
-    transform: rotate(180deg);
-}
-
-.section-bottom {
-    bottom: 0;
-    transform: scaleX(-1);
-
-    svg {
-        height: 55px;
-    }
 }

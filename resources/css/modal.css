@@ -1,65 +1,12 @@
-<script setup lang="ts">
-import { closeModal } from '@/composables/modal';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+@import 'tailwindcss';
+@import "@nuxt/ui";
 
-const props = defineProps({
-    modalId: {
-        type: String,
-        required: true
-    },
-    title: {
-        type: String,
-        required: false
-    },
-    showModal: {
-        type: Boolean,
-        required: false,
-        default: false
-    }
-})
+@reference '../css/app.css';
 
-const modalId = 'modal-' + props.modalId;
-</script>
-
-<template>
-
-    <div :id="modalId" class="modal-wrapper"
-         @click="closeModal(modalId)"
-         :data-dialog-backdrop="modalId"
-         data-dialog-backdrop-close="true"
-         aria-hidden="true">
-
-        <div class="modal"
-             :data-dialog="modalId"
-             @click.stop
-        >
-            <div class="modal-header">
-                <h1>{{ props.title }}</h1>
-                <button @click="closeModal(modalId)" aria-label="Close">
-                    <FontAwesomeIcon icon="fa-outline fa-xmark" class="h-6 w-6" aria-hidden="true" />
-                </button>
-            </div>
-
-            <div class="modal-content">
-
-                <slot />
-
-            </div>
-            <div class="p-4 flex justify-center gap-2">
-                <button type="button" @click="closeModal(modalId)">Close</button>
-                <button class="btn-submit">Submit</button>
-            </div>
-        </div>
-    </div>
-
-</template>
-
-<style scoped>
-@reference "../../css/app.css";
 
 .modal-wrapper {
-    @apply fixed inset-0 z-[60] grid h-screen w-screen place-items-center bg-white/5 opacity-100 backdrop-blur-sm transition-opacity duration-300;
-
+    @apply fixed inset-0 bg-white/5 backdrop-blur-sm;
+    /*@apply fixed inset-0 z-[60] grid h-screen w-screen place-items-center bg-white/5 opacity-0 backdrop-blur-sm transition-opacity duration-300;*/
     /*@apply flex justify-center items-center opacity-0 transition-opacity duration-300 ease-out z-[999] pointer-events-none;*/
     /*@apply fixed inset-0 pointer-events-none;*/
     /*@apply grid h-screen w-screen place-items-center backdrop-opacity-10 opacity-0 backdrop-blur-sm transition-opacity duration-300;*/
@@ -98,4 +45,3 @@ const modalId = 'modal-' + props.modalId;
         @apply hover:bg-terminal-black-700 hover:border-terminal-black-700;
     }
 }
-</style>

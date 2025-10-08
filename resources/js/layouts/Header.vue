@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Nav from '@/components/Nav.vue';
+import Nav from '@/layouts/Nav.vue';
 import BackgroundStars from '@/components/BackgroundStars.vue';
-import Contact from '@/pages/Contact.vue'
-import { openModal } from '@/composables/modal';
+// import Contact from '@/pages/Contact.vue'
+// import { openModal } from '@/composables/modal';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -23,7 +23,10 @@ library.add(faLinkedin, faEnvelope, faXmark);
             <div class="profile-avatar-wrapper">
                 <div class="profile-avatar-backdrop"></div>
                 <img src="/images/profile-avatar.png" alt="Jon Russell" class="profile-avatar" />
-
+                <div class="contact-item-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Remote - North Carolina</span>
+                </div>
                 <div class="profile-icons z-50">
                     <a href="https://www.linkedin.com/in/russell-jonathan/">
                         <FontAwesomeIcon icon="fa-brands fa-linkedin" size="xl" />
@@ -56,10 +59,10 @@ library.add(faLinkedin, faEnvelope, faXmark);
     /*@apply w-full px-4 sm:px-6 lg:px-8 text-white;*/
     /*@apply backdrop-opacity-5 bg-radial-[at_70%_50%] from-white/45 to-transparent to-65%;*/
 
-    //background: //  radial-gradient(at 96% 48%, #041028 0px, transparent 50%),
+/*    //background: //  radial-gradient(at 96% 48%, #041028 0px, transparent 50%),
         //  radial-gradient(at 100% 1%, #111b4f 0px, transparent 60%),
         //  radial-gradient(at 100% 99%, #330509 0px, transparent 50%),
-        //  #041028;
+        //  #041028;*/
 }
 
 .intro-backdrop {

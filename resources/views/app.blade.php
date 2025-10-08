@@ -6,17 +6,17 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
-{{--        <link rel="icon" href="/favicon.ico" sizes="any">--}}
-{{--        <link rel="icon" href="/favicon.svg" type="image/svg+xml">--}}
-{{--        <link rel="apple-touch-icon" href="/apple-touch-icon.png">--}}
-
-{{--        <link rel="preconnect" href="https://fonts.bunny.net">--}}
-{{--        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />--}}
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+        <link rel="manifest" href="/favicons/site.webmanifest">
 
         @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
-        @inertia
+        <div class="isolate">
+            @inertia
+        </div>
     </body>
 </html>

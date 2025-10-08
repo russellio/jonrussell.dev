@@ -196,40 +196,11 @@ onMounted(() => {
 .sky {
     @apply fixed w-full h-full overflow-hidden;
     z-index: -1;
-    //height: 100vh;
     background:
-            radial-gradient(at 51% 46%, #041028 0, transparent 50%),
-            radial-gradient(at 85% 99%, #330509 0, transparent 50%),
-            radial-gradient(at 18% 22%, #111b4f 0, transparent 50%),
-            #041028;
-    //background:
-    //        radial-gradient(at 96% 48%, #041028 0, transparent 50%),
-    //        radial-gradient(at 100% 1%, #111b4f 0, transparent 60%),
-    //        radial-gradient(at 100% 99%, #330509 0, transparent 50%),
-    //        #041028;
-
-    //background: linear-gradient(
-    //    to bottom,
-    //    #060010 0%,
-    //    #060010 6%,
-    //    #090016 11%,
-    //    #070016 20%,
-    //    #0a0121 48%,
-    //    #0a0127 55%,
-    //    #0a0129 57%,
-    //    #0c012b 62%,
-    //    #0e0131 68%,
-    //    #0d012f 69%,
-    //    #18023c 78%,
-    //    #19023e 79%,
-    //    #19023e 79%,
-    //    #1c0242 81%,
-    //    #22034b 85%,
-    //    #2e045a 92%,
-    //    #2f045e 96%,
-    //    #340464 98%,
-    //    #370569 100%
-    //);
+        radial-gradient(at 51% 46%, #041028 0, transparent 50%),
+        radial-gradient(at 85% 99%, #330509 0, transparent 50%),
+        radial-gradient(at 18% 22%, #111b4f 0, transparent 50%),
+        #041028;
     transform: scale(1);
 }
 
@@ -266,7 +237,6 @@ onMounted(() => {
     height: 100px;
     position: absolute;
     bottom: 0;
-    //bottom: 260px;
     z-index: 3;
 }
 
