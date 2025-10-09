@@ -6,7 +6,7 @@ import ContentFrame from '@/components/ContentFrame.vue';
 </script>
 
 <template>
-    <UApp>
+<!--    <UApp>-->
       <div class="app-layout">
         <header>
           <!-- Header / Intro / Navigation -->
@@ -23,7 +23,7 @@ import ContentFrame from '@/components/ContentFrame.vue';
         <!-- Footer -->
         <Footer ref="footer" />
       </div>
-    </UApp>
+<!--    </UApp>-->
 </template>
 
 <style scoped>

@@ -1,19 +1,14 @@
 @import 'tailwindcss';
-@import "@nuxt/ui";
+/*@import "@nuxt/ui";*/
 
 @reference '../css/app.css';
 
-
 .modal-wrapper {
-    @apply fixed inset-0 bg-white/5 backdrop-blur-sm;
-    /*@apply fixed inset-0 z-[60] grid h-screen w-screen place-items-center bg-white/5 opacity-0 backdrop-blur-sm transition-opacity duration-300;*/
-    /*@apply flex justify-center items-center opacity-0 transition-opacity duration-300 ease-out z-[999] pointer-events-none;*/
-    /*@apply fixed inset-0 pointer-events-none;*/
-    /*@apply grid h-screen w-screen place-items-center backdrop-opacity-10 opacity-0 backdrop-blur-sm transition-opacity duration-300;*/
+    @apply fixed inset-0 z-[9999] flex items-center justify-center bg-terminal-black/5 backdrop-blur-sm;
 
     .modal {
-        @apply relative bg-white rounded-xl shadow-2xl shadow-terminal-black-950/5 border-1 border-terminal-black-200 w-3/4 scale-95;
-        /*@apply relative rounded-md overflow-hidden shadow-sm w-3/4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;*/
+        @apply relative bg-white rounded-xl w-3/4 max-w-4xl;
+        @apply shadow-2xl shadow-terminal-black-950/5 border-1 border-terminal-black-200;
     }
 
     .modal-header {
@@ -22,6 +17,10 @@
 
     .modal-content {
         @apply p-4 pt-2 text-white bg-terminal-black;
+    }
+
+    .primary-image {
+        @apply max-w-3 float-left;
     }
 
     h1 {
@@ -34,7 +33,8 @@
         /*@apply text-terminal-black-200 hover:bg-terminal-black/10;*/
         /*@apply border-1 border-transparent hover:border-terminal-black/50 shadow-none hover:shadow-none outline-none;*/
 
-        @apply rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none;
+        @apply rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white;
+        @apply transition-all shadow-md hover:shadow-lg pointer-events-auto disabled:opacity-50 disabled:shadow-none;
     }
 
     .btn-submit {

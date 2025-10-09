@@ -1,0 +1,121 @@
+[
+  {
+    "id": "project-dod",
+    "title": "DoD Budgeting Application",
+    "byline": "SaaS budgeting platform supporting the Navy's Strategic Systems Programs.",
+    "description": "An internal, web-based SaaS platform supporting the Navy's Strategic Systems Programs (SSP), this application managed intricate budget packages spanning appropriations, contracts, and fiscal requirements across multiple years.",
+    "technologies": ["Laravel", "Vue.js", "PHP", "MySQL", "RestAPIs", "Microservices", "Node.js"],
+    "company": "Pioneering Evolution",
+    "icon": "",
+    "image": "/images/ssp-logo.png",
+    "bgImage": "/images/ssp-logo.png",
+    "bgPositionX": "-30px",
+    "bgPositionY": "-50px",
+    "links": [
+      { "type": "github", "label": "GitHub", "icon": "mdi-github", "url": "#" },
+      { "type": "demo", "label": "Live Demo", "icon": "mdi-open-in-new", "url": "#" }
+    ]
+  },
+  {
+    "id": "project-api",
+    "title": "Enterprise API Gateway & Authentication",
+    "byline": "Centralized API gateway with OAuth2 authentication, rate limiting, and request routing for multiple client applications",
+    "description": "<p>As a part of the Digital Flag Board implementation, authentication through LDAP was added so users could utilize their existing Active Directory accounts. Once that was up and running, it became clear a more unified way for additional internal apps to talk to each other was needed.</p><p> That work on authentication kick-started the groundwork for what became the Glen Raven API. I dove into research, even traveling to the \"API World\" conference.  I came up with a proposal for a secure, REST-based API with JWT authentication and Azure pipeline management. That effort set the stage for the Glen Raven API to connect systems, share data, and build future apps on a common foundation. The Glen Raven API allows several different applications to interface with each other (client/vendor orders, distribution, metrics, et al)",
+    "technologies": ["Lumen (Laravel)", "JWT", "PHP", "MySQL", "Rest API"],
+    "company": "Glen Raven",
+    "icon": "",
+    "image": "/images/api-bg.png",
+    "bgImage": "/images/api-bg.png",
+    "bgPositionX": "-30px",
+    "bgPositionY": "-65px",
+    "links": [
+      { "type": "github", "label": "GitHub", "icon": "mdi-github", "url": "#" },
+      { "type": "docs", "label": "Documentation", "icon": "mdi-book", "url": "#" }
+    ]
+  },
+  {
+    "id": "project-digital",
+    "title": "Digital Flag Board",
+    "byline": "Ticketing system for tracking issues with machines across factories.",
+    "description": "The Digital Flag Board is an enterprise-level ticketing system for operators to report and technicians to track issues with machines on the factory floor. The web application is loaded as the sole application running on mobile devices and numerous kiosks stationed around the factory floors. With authentication via Active Directory and LDAP, the admin console allowed senior management to pull cycle time metrics, run reports, manage users, and overall CRUD functionality.",
+    "technologies": ["Laravel", "PHP", "MySQL", "LDAP", "Active Directory", "jQuery"],
+    "company": "Glen Raven",
+    "icon": "",
+    "image": "/images/flag-board/bg.png",
+    "bgImage": "/images/flag-board/bg.png",
+    "bgPositionX": "-30px",
+    "bgPositionY": "-130px",
+    "links": [
+      { "type": "github", "label": "GitHub", "icon": "mdi-github", "url": "#" },
+      { "type": "docs", "label": "Documentation", "icon": "mdi-book", "url": "#" }
+    ]
+  },
+  {
+    "id": "project-concert",
+    "title": "Concert Web",
+    "byline": "SaaS cash machine app?",
+    "description": "",
+    "technologies": ["Laravel", "PHP", "MySQL", "Redis", "REST APIs"],
+    "company": "ARCA",
+    "icon": "",
+    "image": "/images/concert-bg.png",
+    "bgImage": "/images/concert-bg.png",
+    "bgPositionX": "-30px",
+    "bgPositionY": "-65px",
+    "links": [
+      { "type": "github", "label": "GitHub", "icon": "mdi-github", "url": "#" },
+      { "type": "docs", "label": "API Docs", "icon": "mdi-book", "url": "#" }
+    ]
+  },
+  {
+    "id": "project-sms",
+    "title": "Enterprise SMS Notification Services",
+    "byline": "Inclement weather and office closure notification system",
+    "description": "Glen Raven 511 – SMS Notification Services",
+    "technologies": ["Laravel", "PHP", "Vue.js"],
+    "company": "Glen Raven",
+    "icon": "",
+    "image": "https://static.photos/technology/640x360/144",
+    "bgImage": "https://static.photos/technology/640x360/144",
+    "bgPositionX": "-30px",
+    "bgPositionY": "-30px",
+    "links": [
+      { "type": "github", "label": "GitHub", "icon": "mdi-github", "url": "#" },
+      { "type": "demo", "label": "Live Demo", "icon": "mdi-open-in-new", "url": "#" }
+    ]
+  },
+  {
+    "id": "project-web",
+    "title": "Web Request Dashboard",
+    "byline": "Ticketing system for tracking issues with machines across factories.",
+    "description": "Built a real-time analytics system processing millions of events per day. Features include data aggregation, real-time dashboards, and automated reporting with WebSocket connections.",
+    "technologies": ["Laravel", "PHP", "MySQL", "RestAPI", "jQuery", "Bootstrap"],
+    "company": "Glen Raven",
+    "icon": "",
+    "image": "/images/web-requests-bg.png",
+    "bgImage": "/images/web-requests-bg.png",
+    "bgPositionX": "0",
+    "bgPositionY": "0",
+    "links": [
+      { "type": "github", "label": "GitHub", "icon": "mdi-github", "url": "#" },
+      { "type": "docs", "label": "Documentation", "icon": "mdi-book", "url": "#" }
+    ]
+  },
+  {
+    "id": "project-manager",
+    "title": "Project Manager Dashboard",
+    "byline": "UI for automating tasks for project managers.",
+    "description": "",
+    "technologies": ["PHP", "MySQL", "JavaScript", "AJAX", "jQuery"],
+    "company": "Digital Insight",
+    "icon": "",
+    "image": "https://static.photos/technology/640x360/184",
+    "bgImage": "https://static.photos/technology/640x360/184",
+    "bgPositionX": "-30px",
+    "bgPositionY": "-65px",
+    "links": [
+      { "type": "github", "label": "GitHub", "icon": "mdi-github", "url": "#" },
+      { "type": "docs", "label": "API Docs", "icon": "mdi-book", "url": "#" }
+    ]
+  }
+]
