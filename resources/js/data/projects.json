@@ -24,7 +24,7 @@
     "technologies": ["Lumen (Laravel)", "JWT", "PHP", "MySQL", "Rest API"],
     "company": "Glen Raven",
     "icon": "",
-    "image": "/images/api-bg.png",
+    "image": "",
     "bgImage": "/images/api-bg.png",
     "bgPositionX": "-30px",
     "bgPositionY": "-65px",

@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-/*@import "@nuxt/ui";*/
 
 @reference '../css/app.css';
 
@@ -7,7 +6,7 @@
     @apply fixed inset-0 z-[9999] flex items-center justify-center bg-terminal-black/5 backdrop-blur-sm;
 
     .modal {
-        @apply relative bg-white rounded-xl w-3/4 max-w-4xl;
+        @apply relative top-1/6 bg-white rounded-xl w-4/5 max-w-4xl;
         @apply shadow-2xl shadow-terminal-black-950/5 border-1 border-terminal-black-200;
     }
 
@@ -17,14 +16,22 @@
 
     .modal-content {
         @apply p-4 pt-2 text-white bg-terminal-black;
+
+        p {
+            @apply px-8 py-4;
+        }
     }
 
     .primary-image {
-        @apply max-w-3 float-left;
+        @apply float-left w-1/4 p-1 me-4;
+
+        img {
+            @apply w-full h-full object-fill;
+        }
     }
 
     h1 {
-        @apply text-lg text-terminal-black-800 font-semibold;
+        @apply text-xl text-terminal-black-800 font-bold ;
     }
 
     button {

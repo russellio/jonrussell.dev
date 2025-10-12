@@ -4,12 +4,14 @@ import BackgroundStars from '@/components/BackgroundStars.vue';
 // import Contact from '@/pages/Contact.vue'
 // import { openModal } from '@/composables/modal';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+import { library } from '@fortawesome/fontawesome-svg-core'
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-library.add(faLinkedin, faEnvelope, faXmark);
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faUserShield } from '@fortawesome/free-solid-svg-icons';
+library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield);
 
 </script>
 
@@ -23,17 +25,23 @@ library.add(faLinkedin, faEnvelope, faXmark);
             <div class="profile-avatar-wrapper">
                 <div class="profile-avatar-backdrop"></div>
                 <img src="/images/profile-avatar.png" alt="Jon Russell" class="profile-avatar" />
-                <div class="contact-item-header">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Remote - North Carolina</span>
-                </div>
-                <div class="profile-icons z-50">
-                    <a href="https://www.linkedin.com/in/russell-jonathan/">
-                        <FontAwesomeIcon icon="fa-brands fa-linkedin" size="xl" />
-                    </a>
-<!--                    <a data-dialog-target="contact-modal" @click="openModal('modal-contact')" class="cursor-pointer">-->
-<!--                        <FontAwesomeIcon icon="fa-regular fa-envelope" size="lg" />-->
-<!--                    </a>-->
+                <div class="profile-addons">
+                    <div class="profile-pill">
+                        <FontAwesomeIcon :icon="faLocationDot" size="xs" />
+                        Remote - North Carolina
+                    </div>
+                    <div class="profile-pill">
+                        <FontAwesomeIcon :icon="faUserShield" size="xs" />
+                        Confidential Security Clearance
+                    </div>
+                    <div class="profile-icons">
+                        <a href="https://www.linkedin.com/in/russell-jonathan/">
+                            <FontAwesomeIcon :icon="faLinkedin" size="xl" />
+                        </a>
+                        <!--                    <a data-dialog-target="contact-modal" @click="openModal('modal-contact')" class="cursor-pointer">-->
+                        <!--                        <FontAwesomeIcon icon="fa-regular fa-envelope" size="lg" />-->
+                        <!--                    </a>-->
+                    </div>
                 </div>
             </div>
             <h1>Welcome! I'm</h1>
@@ -67,7 +75,7 @@ library.add(faLinkedin, faEnvelope, faXmark);
 
 .intro-backdrop {
     /*@apply absolute h-80 w-full mt-8 bg-white rounded-sm backdrop-filter backdrop-blur-lg opacity-5;*/
-    @apply absolute mt-8 h-80 w-full;
+    @apply absolute mt-8 h-80 w-full bg-white rounded-sm backdrop-filter backdrop-blur-lg opacity-5;
 }
 
 .intro {
@@ -91,19 +99,27 @@ p {
 }
 
 .profile-avatar-wrapper {
-    @apply flex flex-col items-center justify-center h-50 w-46 rounded-full float-right;
-  /*@apply flex w-46 h-50 rounded-full float-right items-center justify-center;*/
+    @apply flex flex-col items-end justify-center h-50 align-top w-46 rounded-full float-right;
 }
 
 .profile-avatar-backdrop {
-    @apply absolute z-30 h-38 w-38 border-2 border-secondary bg-white/20 backdrop-blur-sm backdrop-opacity-50 backdrop-saturate-100;
+    @apply absolute rounded-xs z-30 h-38 w-38 border-2 border-secondary to-purple-100 me-5;
+    @apply bg-white/20 backdrop-blur-sm backdrop-opacity-50 backdrop-saturate-100;
 }
 
 .profile-avatar {
-    @apply z-40 m-1 h-full w-full rounded-full object-cover;
+    @apply z-40 m-1 h-full w-full rounded-full object-cover mb-3 mt-10;
+}
+
+.profile-pill {
+    @apply inline-flex w-max items-center border-1 border-terminal-black-300 rounded-full;
+    @apply text-sm p-0.5 px-4 m-2;
 }
 
 .profile-icons {
-    @apply mt-2 flex text-right;
+    @apply text-right z-50 m-2;
+}
+.profile-addons {
+    @apply flex flex-col justify-end;
 }
 </style>

@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import '../../css/modal.css';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { useModal } from '@/composables/useModal';
 const { closeModal } = useModal();
+
+// import { library } from '@fortawesome/fontawesome-svg-core'
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+library.add(faXmark);
 
 const props = defineProps({
     count: Number,

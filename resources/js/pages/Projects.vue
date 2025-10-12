@@ -34,17 +34,18 @@ const openProjectModal = (project: any) => {
 
                     <a aria-label="View project details" class="cursor-pointer">
                         <div class="group project" @click="openProjectModal(project)">
-                            <img :src="project.image" alt="Project Image" class="project-image"
+                            <img :src="project.bgImage" alt="Project Image" class="project-image"
                                  :style="`object-position: ${project.bgPositionX} ${project.bgPositionY}`" />
 
-                            <div class="project-title-backdrop"><h1>{{ project.title }}</h1></div>
+                            <div class="project-title-backdrop">
+                                <h1>{{ project.title }}</h1>
+                            </div>
                             <div class="project-info-wrapper">
                                 <p>{{ project.byline }}</p>
 
                                 <!-- Technologies -->
                                 <div class="mt-2 mb-4 flex flex-wrap gap-2">
-                                    <div v-for="tech in project.technologies" :key="tech"
-                                         data-open="true"
+                                    <div v-for="(tech, index) in project.technologies" :key="index"
                                          data-shape="pill"
                                          class="pill">
                                         <span class="leading-none my-1 mx-2.5">{{ tech }}</span>
@@ -65,8 +66,11 @@ const openProjectModal = (project: any) => {
             modalId="project-modal"
             :project="selectedProject"
         >
-            <img :src="selectedProject.image" alt="Project Image" class="primary-image" />
-            <div class="p-4 pt-2">{{ selectedProject.description }}</div>
+            <div v-if="selectedProject.image" class="primary-image">
+                <img :src="selectedProject.image" alt="Project Image" />
+            </div>
+
+            <div class="p-4 pt-2" v-html="selectedProject.description" />
         </ProjectModal>
 
     </App>
@@ -89,7 +93,7 @@ const openProjectModal = (project: any) => {
 }
 
 .project-info-wrapper {
-    @apply absolute bottom-0 z-50 text-white px-4 bg-terminal-black w-full;
+    @apply absolute bottom-0 z-50 text-white px-4 pt-2 bg-terminal-black w-full border-t-1 border-terminal-black-300;
     @apply bg-gradient-to-t from-black via-terminal-black to-transparent opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100;
 }
 
@@ -105,7 +109,7 @@ const openProjectModal = (project: any) => {
 }
 
 .pill {
-    @apply inline-flex w-max items-center border select-none rounded-md;
-    @apply data-[shape=pill]:rounded-full text-sm p-0.5 shadow-sm;
+    @apply inline-flex w-max items-center border-1 border-terminal-black-300 select-none;
+    @apply data-[shape=pill]:rounded-full text-xs p-0.5 shadow-sm;
 }
 </style>
