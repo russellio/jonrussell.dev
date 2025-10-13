@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import Nav from '@/layouts/Nav.vue';
+import Nav from '@/layout/Nav.vue';
 import BackgroundStars from '@/components/BackgroundStars.vue';
 // import Contact from '@/pages/Contact.vue'
 // import { openModal } from '@/composables/modal';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faUserShield } from '@fortawesome/free-solid-svg-icons';
-library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield);
+import { faCertificate } from '@fortawesome/free-solid-svg-icons';
+library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield, faCertificate);
 
 </script>
 
@@ -25,14 +25,18 @@ library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield);
             <div class="profile-avatar-wrapper">
                 <div class="profile-avatar-backdrop"></div>
                 <img src="/images/profile-avatar.png" alt="Jon Russell" class="profile-avatar" />
-                <div class="profile-addons">
+                <div class="profile-addon-wrapper">
                     <div class="profile-pill">
-                        <FontAwesomeIcon :icon="faLocationDot" size="xs" />
+                        <FontAwesomeIcon :icon="faLocationDot" class="text-gold" size="md" />
                         Remote - North Carolina
                     </div>
                     <div class="profile-pill">
-                        <FontAwesomeIcon :icon="faUserShield" size="xs" />
-                        Confidential Security Clearance
+                        <FontAwesomeIcon :icon="faCertificate" class="text-gold" size="md" />
+                        Certified ScrumMaster
+                    </div>
+                    <div class="profile-pill">
+                        <FontAwesomeIcon :icon="faUserShield" class="text-gold" size="md" />
+                        DoD Confidential Security Clearance
                     </div>
                     <div class="profile-icons">
                         <a href="https://www.linkedin.com/in/russell-jonathan/">
@@ -56,7 +60,9 @@ library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield);
     <!-- Contact Modal -->
 <!--    <Contact :modalId="'contact'" />-->
 
-    <Nav ref="navigation" />
+<!--    <Nav ref="navigation" />-->
+
+    <div class="intro-bottom h-14"></div>
 </template>
 
 <style scoped>
@@ -64,22 +70,21 @@ library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield);
 
 .intro-wrapper {
     @apply w-full text-white;
-    /*@apply w-full px-4 sm:px-6 lg:px-8 text-white;*/
-    /*@apply backdrop-opacity-5 bg-radial-[at_70%_50%] from-white/45 to-transparent to-65%;*/
-
-/*    //background: //  radial-gradient(at 96% 48%, #041028 0px, transparent 50%),
-        //  radial-gradient(at 100% 1%, #111b4f 0px, transparent 60%),
-        //  radial-gradient(at 100% 99%, #330509 0px, transparent 50%),
-        //  #041028;*/
+    @apply backdrop-opacity-5 bg-radial-[at_70%_50%] from-white/45 to-transparent to-65%;
 }
 
 .intro-backdrop {
-    /*@apply absolute h-80 w-full mt-8 bg-white rounded-sm backdrop-filter backdrop-blur-lg opacity-5;*/
-    @apply absolute mt-8 h-80 w-full bg-white rounded-sm backdrop-filter backdrop-blur-lg opacity-5;
+    @apply absolute mt-12 h-94 w-full bg-white rounded-sm backdrop-filter backdrop-blur-lg opacity-5;
+}
+
+.intro-bottom {
+    @apply max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply relative mx-auto w-9/10 ;
+    /*@apply bg-gradient-to-b from-transparent to-dark-blue;*/
 }
 
 .intro {
-    @apply mx-auto w-5/8 pt-20 pb-6;
+    @apply mx-auto w-5/8 pt-20 pb-6 mb-2;
 }
 
 h1 {
@@ -108,18 +113,22 @@ p {
 }
 
 .profile-avatar {
-    @apply z-40 m-1 h-full w-full rounded-full object-cover mb-3 mt-10;
+    @apply z-40 m-1 h-full w-full rounded-full object-cover mb-3 mt-[8rem];
 }
 
 .profile-pill {
-    @apply inline-flex w-max items-center border-1 border-terminal-black-300 rounded-full;
-    @apply text-sm p-0.5 px-4 m-2;
+    @apply w-max border-1 border-white rounded-full font-bold bg-blue;
+    @apply text-sm p-0.5 px-4 mt-1 mb-2;
 }
 
 .profile-icons {
     @apply text-right z-50 m-2;
+    a svg {
+        @apply text-white;
+    }
 }
-.profile-addons {
-    @apply flex flex-col justify-end;
+
+.profile-addon-wrapper {
+    @apply grid grid-cols-1 justify-items-end;
 }
 </style>

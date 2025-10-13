@@ -1,9 +1,16 @@
 @import 'tailwindcss';
 @import '@fontsource/space-mono';
-@import "@nuxt/ui";
+/*@import "@nuxt/ui";*/
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
+
+
+
+    a {
+        @apply text-blue hover:underline;
+    }
+
 
 @theme {
     --font-space-mono: "Space Mono", "monospace";
@@ -29,6 +36,7 @@
     --color-blue-900: #062456;
     --color-blue-950: #041028;
 
+    --color-gold: #efbf04;
     --color-bright-green: #45f415;
     --color-red: #f50538;
 

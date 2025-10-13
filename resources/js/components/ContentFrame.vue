@@ -29,9 +29,11 @@
 }
 
 .content-top, .content-bottom {
-    @apply absolute left-0 overflow-hidden;
-    width: 101%;
+    @apply absolute left-0 overflow-hidden rounded-b-xl;
+    width: 100%;
     line-height: 0;
+
+    border-bottom: 3px ridge var(--color-secondary);
 
     svg {
         position: relative;
@@ -46,8 +48,9 @@
 }
 
 .content-top {
-    top: 0;
+    @apply top-0;
     transform: rotate(180deg);
+    //border-bottom: 3px ridge var(--color-secondary);
 }
 
 .content-bottom {

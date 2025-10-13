@@ -3,10 +3,10 @@
 @reference '../css/app.css';
 
 .modal-wrapper {
-    @apply fixed inset-0 z-[9999] flex items-center justify-center bg-terminal-black/5 backdrop-blur-sm;
+    @apply fixed inset-0 z-[9999] flex items-start justify-center pt-30 bg-terminal-black/5 backdrop-blur-sm;
 
     .modal {
-        @apply relative top-1/6 bg-white rounded-xl w-4/5 max-w-4xl;
+        @apply relative bg-white rounded-xl w-5/6 max-w-7xl mx-auto;
         @apply shadow-2xl shadow-terminal-black-950/5 border-1 border-terminal-black-200;
     }
 
@@ -18,12 +18,16 @@
         @apply p-4 pt-2 text-white bg-terminal-black;
 
         p {
-            @apply px-8 py-4;
+            @apply px-0 py-2;
         }
     }
 
+    .modal-footer {
+        @apply p-4 flex justify-end gap-2;
+    }
+
     .primary-image {
-        @apply float-left w-1/4 p-1 me-4;
+        @apply p-1;
 
         img {
             @apply w-full h-full object-fill;
@@ -31,7 +35,12 @@
     }
 
     h1 {
-        @apply text-xl text-terminal-black-800 font-bold ;
+        @apply text-2xl ms-10 font-bold text-secondary;
+
+        span {
+            @apply text-blue text-4xl;
+            font-family: Roboto, sans-serif;
+        }
     }
 
     button {
@@ -40,8 +49,8 @@
         /*@apply text-terminal-black-200 hover:bg-terminal-black/10;*/
         /*@apply border-1 border-transparent hover:border-terminal-black/50 shadow-none hover:shadow-none outline-none;*/
 
-        @apply rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white;
-        @apply transition-all shadow-md hover:shadow-lg pointer-events-auto disabled:opacity-50 disabled:shadow-none;
+        @apply font-bold rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white;
+        @apply transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:shadow-none;
     }
 
     .btn-submit {
