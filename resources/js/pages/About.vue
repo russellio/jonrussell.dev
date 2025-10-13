@@ -21,10 +21,10 @@ const approaches = [
     },
 ];
 
-const skills = [
-    { title: 'Vue.js', icon: 'mdi-vuejs' },
-    { title: 'Plays well with others.', icon: 'mdi-vuejs' },
-];
+// const skills = [
+//     { title: 'Vue.js', icon: 'mdi-vuejs' },
+//     { title: 'Plays well with others.', icon: 'mdi-vuejs' },
+// ];
 </script>
 
 <template>
