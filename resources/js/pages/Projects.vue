@@ -184,7 +184,6 @@ const hasModalRightContent = (project: any) => {
             @apply ps-2;
         }
     }
-
 }
 
 .modal-left {
