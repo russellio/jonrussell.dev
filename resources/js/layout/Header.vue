@@ -116,20 +116,11 @@ p {
 .profile-avatar-wrapper {
     @apply flex flex-col justify-start md:h-50 w-11/12 md:w-46 rounded-full md:float-right;
     @apply items-start md:items-end;
-    /*@apply justify-center md:justify-start;*/
-    /*
-;
-@apply h-full md:h-auto;
-@apply w-full md:w-auto;
-@apply mb-0 md:mb-2;
-@apply pt-0 md:pt-20;
-@apply pb-0 md:pb-6;*/
 }
 
 .profile-avatar-backdrop {
     @apply absolute rounded-sm z-30 h-70 md:h-38 w-70 md:w-38 ms-3 md:ms-5 mt-20 md:mt-10 border-2 border-secondary to-purple-100 md:me-5;
     @apply bg-white/20 backdrop-blur-sm backdrop-opacity-50 backdrop-saturate-100;
-    //margin-top: -30px;
 
 }
 
