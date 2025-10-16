@@ -3,7 +3,7 @@
 @reference '../css/app.css';
 
 .modal-wrapper {
-    @apply fixed inset-0 z-[9999] flex items-start justify-center pt-30 bg-terminal-black/5 backdrop-blur-sm;
+    @apply fixed inset-0 z-[9999] flex items-start justify-center pt-30 bg-terminal-black/5 backdrop-blur-sm overflow-y-auto;
 
     .modal {
         @apply relative bg-white rounded-xl w-5/6 max-w-7xl mx-auto;
@@ -15,6 +15,7 @@
     }
 
     .modal-content {
+        /*@apply flex flex-col md:flex-row;*/
         @apply p-4 pt-2 text-white bg-terminal-black;
 
         p {

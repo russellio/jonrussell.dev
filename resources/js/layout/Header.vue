@@ -23,7 +23,15 @@ library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield, faCertificate);
 
         <div class="intro">
 
-            <div class="profile-avatar-wrapper">
+            <div class="welcome">
+                <h1>Welcome! I'm <span class="name">Jon Russell.</span></h1>
+                <p>
+                    A <strong>full-stack software engineer</strong>
+                    who creates robust, scalable solutions that power modern web applications.
+                </p>
+            </div>
+
+            <div class="profile-avatar-wrapper ">
                 <div class="profile-avatar-backdrop"></div>
                 <img src="/images/profile-avatar.png" alt="Jon Russell" class="profile-avatar" />
                 <div class="profile-addon-wrapper">
@@ -51,12 +59,6 @@ library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield, faCertificate);
                 </div>
             </div>
 
-            <h1>Welcome! I'm</h1>
-            <h1 class="name">Jon Russell.</h1>
-            <p>
-                A <strong>full-stack software engineer</strong>
-                who creates robust, scalable solutions that power modern web applications.
-            </p>
         </div>
     </div>
 
@@ -77,11 +79,16 @@ library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield, faCertificate);
 }
 
 .intro {
-    @apply mx-auto w-5/8 pt-20 pb-6 mb-2;
+    @apply mx-auto w-3/4 pt-20 pb-6 mb-2;
+    @apply flex flex-col md:flex-row;
+
+    .welcome {
+        @apply w-3/4;
+    }
 }
 
 .intro-backdrop {
-    @apply absolute mt-12 h-94 w-full bg-white rounded-sm backdrop-filter backdrop-blur-lg opacity-5;
+    @apply absolute mt-12 h-94 md:h-100 w-full bg-white rounded-sm backdrop-filter backdrop-blur-lg opacity-5;
 }
 
 .intro-bottom {
@@ -91,15 +98,15 @@ library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield, faCertificate);
 }
 
 h1 {
-    @apply text-6xl text-nowrap text-blue;
+    @apply text-6xl md:text-nowrap text-blue;
 
-    &.name {
-        @apply text-right font-bold tracking-tight text-white;
+    .name {
+        @apply md:text-right font-bold tracking-tight text-white md:block;
     }
 }
 
 p {
-    @apply ms-10 mt-9 mb-8 w-2/3 -indent-8 text-2xl text-terminal-black-50;
+    @apply ms-10 mt-9 mb-8 -indent-8 text-2xl text-terminal-black-50;
 
     strong {
         @apply px-3 text-4xl font-bold tracking-tight text-white;
@@ -107,17 +114,27 @@ p {
 }
 
 .profile-avatar-wrapper {
-    @apply flex flex-col items-end justify-center h-50 align-top w-46 rounded-full float-right;
+    @apply flex flex-col justify-start md:h-50 w-11/12 md:w-46 rounded-full md:float-right;
+    @apply items-start md:items-end;
+    /*@apply justify-center md:justify-start;*/
+    /*
+;
+@apply h-full md:h-auto;
+@apply w-full md:w-auto;
+@apply mb-0 md:mb-2;
+@apply pt-0 md:pt-20;
+@apply pb-0 md:pb-6;*/
 }
 
 .profile-avatar-backdrop {
-    @apply absolute rounded-xs z-30 h-38 w-38 border-2 border-secondary to-purple-100 me-5;
+    @apply absolute rounded-sm z-30 h-70 md:h-38 w-70 md:w-38 ms-3 md:ms-5 mt-20 md:mt-10 border-2 border-secondary to-purple-100 md:me-5;
     @apply bg-white/20 backdrop-blur-sm backdrop-opacity-50 backdrop-saturate-100;
-    margin-top: -30px;
+    //margin-top: -30px;
+
 }
 
 .profile-avatar {
-    @apply z-40 m-1 h-full w-full rounded-full object-cover mb-3 mt-[8rem];
+    @apply z-40 m-1 h-full w-full rounded-full object-cover md:mb-3;
 }
 
 .profile-pill {
@@ -134,6 +151,6 @@ p {
 }
 
 .profile-addon-wrapper {
-    @apply grid grid-cols-1 justify-items-end;
+    @apply grid grid-cols-1 justify-items-center md:justify-items-end;
 }
 </style>
