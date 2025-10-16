@@ -5,13 +5,6 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
-
-
-    a {
-        @apply text-blue hover:underline;
-    }
-
-
 @theme {
     --font-space-mono: "Space Mono", "monospace";
 

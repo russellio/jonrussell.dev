@@ -144,7 +144,7 @@ Edit `resources/js/data/projects.json` to add new projects:
   "technologies": ["REST APIs", "MySQL"],
   "tools": ["Docker", "Git"],
   "company": "Company Name",
-  "image": "/images/project.png",
+  "primaryImage": "/images/project.png",
   "links": [{"title": "Live Demo", "url": "https://example.com"}]
 }
 ```

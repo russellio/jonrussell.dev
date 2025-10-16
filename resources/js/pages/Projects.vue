@@ -29,7 +29,7 @@ const projectHasProperty = (project: any, property: any) => {
 };
 
 const hasModalLeftContent = (project: any) => {
-    return projectHasProperty(project, 'image');
+    return projectHasProperty(project, 'primaryImage');
 };
 
 const hasModalRightContent = (project: any) => {
@@ -71,7 +71,6 @@ const hasModalRightContent = (project: any) => {
                                 </div>
                             </div>
 
-
                             <div class="project-info-wrapper">
                                 <p>{{ project.byline }}</p>
 
@@ -97,8 +96,13 @@ const hasModalRightContent = (project: any) => {
             :project="selectedProject"
         >
             <div v-if="hasModalLeftContent(selectedProject)" class="modal-left">
-                <div v-if="projectHasProperty(selectedProject, 'image')" class="primary-image">
-                    <img :src="selectedProject.image" alt="Project Image" />
+                <div v-if="projectHasProperty(selectedProject, 'primaryImage')" class="primary-image">
+                    <img :src="selectedProject.primaryImage" alt="Project Image" />
+                </div>
+                <div v-if="projectHasProperty(selectedProject, 'images')" class="thumbnails">
+                    <div v-for="(image, index) in selectedProject.images" :key="index" class="thumbnail">
+                        <a :href="image.src" target="_blank"><img :src="image.src" :alt="image.alt" /></a>
+                    </div>
                 </div>
             </div>
 
@@ -164,8 +168,19 @@ const hasModalRightContent = (project: any) => {
 <style scoped>
 @reference "../../css/app.css";
 
+.thumbnails {
+
+    .thumbnail {
+        @apply inline-flex align-top justify-center w-1/2 mt-2;
+
+        img {
+            @apply max-w-[80px];
+        }
+    }
+}
+
 .modal-center {
-    @apply grid grid-cols-1 gap-0 h-full;
+    @apply grid grid-cols-1 gap-0 h-full mb-10;
 
     h3 {
         @apply font-bold mt-2 text-lg font-space-mono;
@@ -215,9 +230,9 @@ const hasModalRightContent = (project: any) => {
     @apply absolute opacity-40 transition-opacity duration-300 ease-in-out group-hover:opacity-100;
     @apply object-none z-10 bg-terminal-black;
     object-position: -30px -130px;
-    /*@apply saturate-100 transition-saturate duration-300 ease-in-out group-hover:saturate-0;*/
-    /*@apply blur-xs transition-[blur] duration-300 ease-in-out group-hover:blur-none;*/
-    @apply grayscale-0 transition-[grayscale] duration-300 ease-in-out group-hover:grayscale-100;
+    /*@apply saturate-100 transition-[saturate] duration-300 ease-in-out group-hover:saturate-0;*/
+    @apply blur-xs transition-[blur] duration-300 ease-in-out group-hover:blur-none;
+    /*@apply grayscale-0 transition-[grayscale] duration-300 ease-in-out group-hover:grayscale-100;*/
 }
 
 .project-info-wrapper {

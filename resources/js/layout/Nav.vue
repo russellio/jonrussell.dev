@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 
 const navigation = [
   {
@@ -19,6 +20,9 @@ const scrollToSection = (route: string) => {
   // Implementation for scrolling to section
   console.log('Scrolling to:', route)
 }
+
+const mobileMenuOpen = ref(false);
+
 </script>
 
 <template>
@@ -78,18 +82,18 @@ const scrollToSection = (route: string) => {
       </div>
 
       <!-- Mobile menu -->
-              <div v-if="mobileMenuOpen" class="md:hidden">
-                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                  <button
-                    v-for="item in navigation"
-                    :key="item.name"
-                    @click="scrollToSection(item.route); mobileMenuOpen = false"
-                    class="text-gray-600 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium"
-                  >
-                    {{ item.name }}
-                  </button>
-                </div>
-              </div>
+      <div v-if="mobileMenuOpen" class="md:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <button
+            v-for="item in navigation"
+            :key="item.name"
+            @click="scrollToSection(item.route); mobileMenuOpen = false"
+            class="text-gray-600 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium"
+          >
+            {{ item.name }}
+          </button>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
