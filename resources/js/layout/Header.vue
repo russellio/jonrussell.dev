@@ -43,12 +43,12 @@ onMounted(() => {
 <template>
     <!-- Fallback background for immediate visibility -->
     <div class="fallback-background" :class="{ 'fade-out': showBackground }"></div>
-    
+
     <!-- Async background stars with smooth transition -->
     <Transition name="background-fade" appear>
-        <BackgroundStars 
-            v-if="showBackground" 
-            ref="stars" 
+        <BackgroundStars
+            v-if="showBackground"
+            ref="stars"
             @background-ready="handleBackgroundReady"
         />
     </Transition>
@@ -144,19 +144,21 @@ onMounted(() => {
 }
 
 .intro {
-    @apply mx-auto w-3/4 pt-20 pb-6 mb-2;
+    @apply mx-auto w-5/6 md:w-3/4 pt-20 pb-6 mb-2;
     @apply flex flex-col md:flex-row;
 
     .welcome {
-        @apply w-3/4;
+        @apply w-full md:w-3/4;
     }
 }
 
 .intro-backdrop {
-    @apply absolute mt-12 h-94 md:h-100 w-full bg-white rounded-sm backdrop-filter backdrop-blur-lg opacity-5;
+    @apply absolute mt-12 opacity-20 h-[38%] w-full bg-white backdrop-filter backdrop-blur-lg;
+    @apply md:h-full md:opacity-5;
 }
 
 .intro-bottom {
+    @apply hidden md:block;
     @apply max-w-7xl px-4 sm:px-6 lg:px-8;
     @apply relative clear-right mx-auto w-9/10 h-14 z-[-1];
     /*@apply bg-gradient-to-b from-transparent to-dark-blue;*/
@@ -166,12 +168,12 @@ h1 {
     @apply text-6xl md:text-nowrap text-blue;
 
     .name {
-        @apply md:text-right font-bold tracking-tight text-white md:block;
+        @apply md:text-right font-bold tracking-tighter text-white md:block;
     }
 }
 
 p {
-    @apply ms-10 mt-9 mb-8 -indent-8 text-2xl text-terminal-black-50;
+    @apply ms-0 md:ms-10 mt-9 mb-8 md:-indent-8 text-2xl text-terminal-black-50;
 
     strong {
         @apply px-3 text-4xl font-bold tracking-tight text-white;
@@ -184,7 +186,7 @@ p {
 }
 
 .profile-avatar-backdrop {
-    @apply absolute rounded-sm z-30 h-70 md:h-38 w-70 md:w-38 ms-3 md:ms-5 mt-20 md:mt-10 border-2 border-secondary to-purple-100 md:me-5;
+    @apply absolute rounded-sm z-30 h-70 md:h-38 w-76 md:w-38 ms-5 mt-30 md:mt-10 border-2 border-secondary to-purple-100 md:me-5;
     @apply bg-white/20 backdrop-blur-sm backdrop-opacity-50 backdrop-saturate-100;
 
 }
@@ -195,7 +197,7 @@ p {
 
 .profile-pill {
     @apply w-max border-1 border-white rounded-full font-bold bg-blue;
-    @apply text-sm p-0.5 px-4 mt-1 mb-2;
+    @apply text-[18px] md:text-sm p-0.5 px-4 mt-1 mb-2;
 }
 
 .profile-icons {

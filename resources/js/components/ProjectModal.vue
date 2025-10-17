@@ -121,45 +121,6 @@ h3 {
     }
 }
 
-.modal-center {
-    @apply grid grid-cols-1 gap-0 h-full w-4/5 mx-auto;
-    @apply md:w-2/3 md:mb-10;
-
-    h3 {
-        @apply text-lg;
-
-        span {
-            @apply font-normal;
-            font-family: Roboto, sans-serif;
-        }
-    }
-
-    .links {
-        ul {
-            list-style-type: disc;
-        }
-        li .text-gold {
-            @apply ps-2;
-        }
-    }
-}
-
-.modal-left {
-    /*@apply float-start;*/
-    @apply grid grid-cols-1 text-sm me-4 pt-4 w-4/5 mx-auto h-full;
-    @apply md:w-1/6;
-}
-
-.modal-right {
-    /*@apply float-end;*/
-    @apply grid grid-cols-1 text-sm ms-4 pt-2 w-4/5 mx-auto h-full;
-    @apply md:w-1/6;
-
-    h3 {
-        @apply font-bold mt-3 text-sm font-space-mono;
-    }
-}
-
 .description {
     @apply text-sm;
 }

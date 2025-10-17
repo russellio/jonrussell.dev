@@ -104,17 +104,20 @@ const openProjectModal = (project: any) => {
 
 .project-info-wrapper {
     @apply absolute bottom-0 z-50 text-white px-4 pt-2 bg-terminal-black w-full border-t-1 border-terminal-black-300;
-    @apply bg-gradient-to-t from-black via-terminal-black to-transparent opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100;
+    @apply bg-gradient-to-t from-black via-terminal-black to-transparent md:opacity-0 md:transition-opacity md:duration-300 md:ease-in-out md:group-hover:opacity-100;
+    @apply sm:max-md:opacity-100;
 }
 
 .project-title-backdrop {
-    @apply absolute w-[98%] rounded-md p-0.5 z-20 m-1 mt-15;
+    @apply absolute w-[98%] rounded-md p-0.5 z-20 m-1 md:mt-15;
     @apply border-1 border-terminal-black-700 border-s-0 border-t-0;
-    @apply transition-all duration-300 ease-in-out group-hover:mt-5 group-hover:border-transparent;
+    @apply md:transition-all md:duration-300 md:ease-in-out md:group-hover:mt-5 md:group-hover:border-transparent;
+    @apply sm:max-md:mt-2;
 
     h1 {
         @apply p-1 ps-8 backdrop-blur-sm border-1 border-blue-100 rounded-md;
-        @apply backdrop-filter bg-white/5 transition-[bg-white] duration-300 ease-in group-hover:bg-white/45;
+        @apply backdrop-filter bg-white/5 md:transition-[bg-white] md:duration-300 md:ease-in md:group-hover:bg-white/45;
+        @apply sm:max-md:bg-white/45;
     }
 
     div.awards {

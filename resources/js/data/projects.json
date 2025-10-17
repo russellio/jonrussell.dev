@@ -33,7 +33,7 @@
     {
         "id": "project-digital",
         "title": "Digital Flag Board",
-        "byline": "Enterprise ticketing system that connects factory operators, technicians, and management in real time to keep production running smoothly.",
+        "byline": "Enterprise ticketing system that connects factory operators, technicians, and management in real time.",
         "description": "<p>At Glen Raven, I led the development of the Digital Flag Board from inception to fruition.  The Digital Flag Board is an enterprise ticketing platform built for factory operations, connecting machine operators, technicians, and management in real time. Operators use it to flag issues directly from kiosks and mobile devices stationed across the factory floor, while technicians track, resolve, and close those tickets through a responsive, purpose-built interface.</p><p>I worked full stack across Laravel, PHP, MySQL, and HTML5/CSS3, Bootstrap, jQuery, and JavaScript on the frontend, building features that kept the platform stable under constant use.</p><p>The system ran as a dedicated web app on every kiosk and device, authenticated through Active Directory and LDAP for secure, role-based access.</p><p>The admin console allowed senior management to review cycle time metrics, run performance reports, manage users, and handle all CRUD operations through a clean, intuitive dashboard. My focus was creating a reliable, high-availability system that kept production flowing and reduced downtime across the plant.</p>",
         "skills": ["Laravel", "PHP", "MySQL", "JavaScript", "jQuery", "Bootstrap"],
         "technologies": ["LDAP", "Active Directory", "JWT", "Redis", "REST APIs"],
