@@ -15,7 +15,8 @@
     }
 
     .modal-content {
-        /*@apply flex flex-col md:flex-row;*/
+        /*@apply grid grid-cols-3 gap-0 w-full;*/
+        @apply flex flex-col md:flex-row w-full;
         @apply p-4 pt-2 text-white bg-terminal-black;
 
         p {
@@ -27,13 +28,7 @@
         @apply p-4 flex justify-end gap-2;
     }
 
-    .primary-image {
-        @apply p-1;
 
-        img {
-            @apply w-full h-full object-fill;
-        }
-    }
 
     h1 {
         @apply text-2xl ms-10 font-bold text-secondary;
@@ -51,6 +46,7 @@
         /*@apply border-1 border-transparent hover:border-terminal-black/50 shadow-none hover:shadow-none outline-none;*/
 
         @apply font-bold rounded-md bg-terminal-black-700 py-2 px-4 border border-transparent text-center text-sm text-white;
+
         @apply transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:shadow-none;
     }
 

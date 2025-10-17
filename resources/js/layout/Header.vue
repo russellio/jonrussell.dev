@@ -1,6 +1,5 @@
 <script setup lang="ts">
 // import Nav from '@/layout/Nav.vue';
-import BackgroundStars from '@/components/BackgroundStars.vue';
 // import Contact from '@/pages/Contact.vue'
 // import { openModal } from '@/composables/modal';
 
@@ -11,12 +10,48 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faUserShield } from '@fortawesome/free-solid-svg-icons';
 import { faCertificate } from '@fortawesome/free-solid-svg-icons';
+import { ref, onMounted, defineAsyncComponent } from 'vue';
+
 library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield, faCertificate);
+
+// Async component loading for better performance
+const BackgroundStars = defineAsyncComponent(() => import('@/components/BackgroundStars.vue'));
+
+// State for background loading
+const backgroundLoaded = ref(false);
+const showBackground = ref(false);
+
+// Handle background ready
+const handleBackgroundReady = () => {
+    backgroundLoaded.value = true;
+    // Small delay to ensure smooth transition
+    setTimeout(() => {
+        showBackground.value = true;
+    }, 100);
+};
+
+onMounted(() => {
+    // Start loading background immediately but don't block content
+    setTimeout(() => {
+        // This will trigger the async component to load
+        showBackground.value = true;
+    }, 50);
+});
 
 </script>
 
 <template>
-    <BackgroundStars ref="stars" />
+    <!-- Fallback background for immediate visibility -->
+    <div class="fallback-background" :class="{ 'fade-out': showBackground }"></div>
+    
+    <!-- Async background stars with smooth transition -->
+    <Transition name="background-fade" appear>
+        <BackgroundStars 
+            v-if="showBackground" 
+            ref="stars" 
+            @background-ready="handleBackgroundReady"
+        />
+    </Transition>
 
     <div class="intro-wrapper">
         <div class="intro-backdrop"></div>
@@ -72,6 +107,36 @@ library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield, faCertificate);
 
 <style scoped>
 @reference "../../css/app.css";
+
+/* Fallback background for immediate visibility */
+.fallback-background {
+    @apply fixed w-full h-full overflow-hidden;
+    z-index: -2;
+    background:
+        radial-gradient(at 51% 46%, #041028 0, transparent 50%),
+        radial-gradient(at 85% 99%, #330509 0, transparent 50%),
+        radial-gradient(at 18% 22%, #111b4f 0, transparent 50%),
+        #041028;
+    transition: opacity 1.5s ease-in-out;
+    opacity: 1;
+}
+
+.fallback-background.fade-out {
+    opacity: 0;
+}
+
+/* Smooth background transition */
+.background-fade-enter-active {
+    transition: opacity 1.5s ease-in-out;
+}
+
+.background-fade-enter-from {
+    opacity: 0;
+}
+
+.background-fade-enter-to {
+    opacity: 1;
+}
 
 .intro-wrapper {
     @apply w-full text-white;

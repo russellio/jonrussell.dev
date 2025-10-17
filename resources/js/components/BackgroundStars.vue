@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 
+// Define emits for parent communication
+const emit = defineEmits<{
+    'background-ready': []
+}>();
+
 const starsContainer = ref<HTMLElement>();
 const starsCrossContainer = ref<HTMLElement>();
 const starsCrossAuxContainer = ref<HTMLElement>();
@@ -73,71 +78,41 @@ function createStar2WithPercentage(
 
 function generateStars() {
     if (!starsContainer.value || !starsCrossContainer.value || !starsCrossAuxContainer.value) {
-        // console.log('Star containers not found:', {
-        //     stars: !!starsContainer.value,
-        //     cross: !!starsCrossContainer.value,
-        //     aux: !!starsCrossAuxContainer.value
-        // });
         return;
     }
 
-    // Generate basic stars
-    // for (let i = 0; i < 500; i++) {
-    //     starsContainer.value.appendChild(
-    //         createStarElement('star-1 blink', getRandomInt(0, 40), getRandomInt(0, 100), getRandomInt(2, 5))
-    //     );
-    //     starsContainer.value.appendChild(
-    //         createStarElement('star-2 blink', getRandomInt(20, 70), getRandomInt(0, 100), getRandomInt(4, 8))
-    //     );
-    // }
+    // Use DocumentFragment for better performance
+    const starsFragment = document.createDocumentFragment();
+    const crossFragment = document.createDocumentFragment();
+    const auxFragment = document.createDocumentFragment();
 
-    // for (let i = 0; i < 150; i++) {
-    //     starsContainer.value.appendChild(
-    //         createStarElement('star-0', getRandomInt(0, 50), getRandomInt(0, 100), getRandomInt(1, 2.5))
-    //     );
-    //     starsContainer.value.appendChild(
-    //         createStarElement('star-1 blink', getRandomInt(0, 50), getRandomInt(0, 100), getRandomInt(2.5, 4))
-    //     );
-    //     starsContainer.value.appendChild(
-    //         createStarElement('star-2 blink', getRandomInt(0, 50), getRandomInt(0, 100), getRandomInt(4, 5))
-    //     );
-    // }
-
-    // for (let i = 0; i < 100; i++) {
-    //     starsContainer.value.appendChild(
-    //         createStarElement('star-0', getRandomInt(40, 75), getRandomInt(0, 100), getRandomInt(1, 3))
-    //     );
-    //     starsContainer.value.appendChild(
-    //         createStarElement('star-1 blink', getRandomInt(40, 75), getRandomInt(0, 100), getRandomInt(2, 4))
-    //     );
-    // }
-
+    // Generate basic stars in batches to avoid blocking
     for (let i = 0; i < 250; i++) {
-        starsContainer.value.appendChild(
+        starsFragment.appendChild(
             createStarElement('star-0', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(1, 2))
         );
-        starsContainer.value.appendChild(
+        starsFragment.appendChild(
             createStarElement('star-1 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(2, 5))
         );
-        starsContainer.value.appendChild(
+        starsFragment.appendChild(
             createStarElement('star-2 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(1, 4))
         );
-        starsContainer.value.appendChild(
+        starsFragment.appendChild(
             createStarElement('star-3 blink', getRandomInt(0, 70), getRandomInt(0, 100), getRandomInt(5, 7))
         );
     }
 
     // Generate cross stars
     for (let i = 0; i < 150; i++) {
-        starsContainer.value.appendChild(
+        starsFragment.appendChild(
             createStarElement('star-4 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(5, 7))
         );
 
         const color = nightSky[Math.ceil(getRandomInt(0, nightSky.length - 1))];
-        starsCrossContainer.value.appendChild(
+        crossFragment.appendChild(
             createBlurElement(getRandomInt(0, 100), getRandomInt(0, 100), color)
         );
-        starsCrossContainer.value.appendChild(
+        crossFragment.appendChild(
             createStarWithPercentage('star-1 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(6, 12), color, color)
         );
     }
@@ -146,30 +121,34 @@ function generateStars() {
     for (let i = 0; i < 50; i++) {
         if (i % 2 === 0) {
             const color = nightSky[Math.ceil(getRandomInt(0, nightSky.length - 1))];
-            starsContainer.value.appendChild(
+            starsFragment.appendChild(
                 createStarElement('star-5', getRandomInt(0, 50), getRandomInt(0, 100), getRandomInt(5, 7), color)
             );
         }
 
         const color = nightSky[Math.ceil(getRandomInt(0, nightSky.length - 1))];
-        starsCrossAuxContainer.value.appendChild(
+        auxFragment.appendChild(
             createBlurElement(getRandomInt(0, 100), getRandomInt(0, 100), color)
         );
-        starsCrossAuxContainer.value.appendChild(
+        auxFragment.appendChild(
             createStar2WithPercentage(getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(4, 10), color, color)
         );
     }
 
-    // console.log('Stars generated successfully!', {
-    //     starsCount: starsContainer.value.children.length,
-    //     crossCount: starsCrossContainer.value.children.length,
-    //     auxCount: starsCrossAuxContainer.value.children.length
-    // });
+    // Append all fragments at once for better performance
+    starsContainer.value.appendChild(starsFragment);
+    starsCrossContainer.value.appendChild(crossFragment);
+    starsCrossAuxContainer.value.appendChild(auxFragment);
 }
 
 // Generate stars when component is mounted
 onMounted(() => {
-    generateStars();
+    // Use requestAnimationFrame to ensure DOM is ready and not block rendering
+    requestAnimationFrame(() => {
+        generateStars();
+        // Emit event when background is ready
+        emit('background-ready');
+    });
 });
 </script>
 

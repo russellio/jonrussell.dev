@@ -7,10 +7,10 @@ import projectData from '@/data/projects.json';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faAward } from '@fortawesome/free-solid-svg-icons';
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
-import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-library.add(faAward, faCaretRight, faArrowUpRightFromSquare);
+
+library.add(faXmark, faAward);
 
 const { isOpen, openModal } = useModal();
 
@@ -22,20 +22,6 @@ const isModalOpen = computed(() => isOpen('project-modal'));
 const openProjectModal = (project: any) => {
     selectedProject.value = project;
     openModal('project-modal');
-};
-
-const projectHasProperty = (project: any, property: any) => {
-    return project.hasOwnProperty(property) && project[property].length > 0;
-};
-
-const hasModalLeftContent = (project: any) => {
-    return projectHasProperty(project, 'primaryImage');
-};
-
-const hasModalRightContent = (project: any) => {
-    return projectHasProperty(project, 'skills')
-        || projectHasProperty(project, 'technologies')
-        || projectHasProperty(project, 'tools');
 };
 </script>
 
@@ -92,135 +78,16 @@ const hasModalRightContent = (project: any) => {
         <!-- Single Project Modal -->
         <ProjectModal
             v-if="isModalOpen && selectedProject"
-            modalId="project-modal"
+
             :project="selectedProject"
-        >
-            <div v-if="hasModalLeftContent(selectedProject)" class="modal-left">
-                <div v-if="projectHasProperty(selectedProject, 'primaryImage')" class="primary-image">
-                    <img :src="selectedProject.primaryImage" alt="Project Image" />
-                </div>
-                <div v-if="projectHasProperty(selectedProject, 'images')" class="thumbnails">
-                    <div v-for="(image, index) in selectedProject.images" :key="index" class="thumbnail">
-                        <a :href="image.src" target="_blank"><img :src="image.src" :alt="image.alt" /></a>
-                    </div>
-                </div>
-            </div>
-
-            <div v-if="hasModalRightContent(selectedProject)" class="modal-right">
-                <div v-if="projectHasProperty(selectedProject, 'skills')" class="skills">
-                    <h3>skills:</h3>
-                    <ul class="fa-ul">
-                        <li v-for="(skill, index) in selectedProject.skills" :key="index">
-                            <span class="fa-li"><FontAwesomeIcon icon="fa-solid fa-caret-right" class="text-gold" /></span>
-                            {{ skill }}
-                        </li>
-                    </ul>
-                </div>
-
-                <div v-if="projectHasProperty(selectedProject, 'technologies')" class="technologies">
-                    <h3>tech:</h3>
-                    <ul class="fa-ul">
-                        <li v-for="(tech, index) in selectedProject.technologies" :key="index">
-                            <span class="fa-li"><FontAwesomeIcon icon="fa-solid fa-caret-right" class="text-gold" /></span>
-                            {{ tech }}
-                        </li>
-                    </ul>
-                </div>
-
-                <div v-if="projectHasProperty(selectedProject, 'tools')" class="tools">
-                    <h3>tools:</h3>
-                    <ul class="fa-ul">
-                        <li v-for="(tool, index) in selectedProject.tools" :key="index">
-                            <span class="fa-li"><FontAwesomeIcon :icon="faCaretRight" class="text-gold" /></span>
-                            {{ tool }}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="modal-center">
-                <div v-if="projectHasProperty(selectedProject, 'company')" class="company">
-                    <h3>company: <span>{{ selectedProject.company }}</span></h3>
-                </div>
-
-                <div v-if="projectHasProperty(selectedProject, 'description')" class="description">
-                    <h3>description:</h3>
-                    <div v-html="selectedProject.description" />
-                </div>
-
-                <div v-if="projectHasProperty(selectedProject, 'links')" class="links">
-                    <h3>links:</h3>
-                    <ul class="fa-ul">
-                        <li v-for="(link, index) in selectedProject.links" :key="index">
-                            <a :href="link.url" target="_blank">{{ link.title }}</a>
-                            <FontAwesomeIcon :icon="faArrowUpRightFromSquare" class="text-gold ps-2" size="sm" />
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="clear-both" />
-        </ProjectModal>
-
+        />
     </App>
 </template>
 
 <style scoped>
 @reference "../../css/app.css";
 
-.thumbnails {
 
-    .thumbnail {
-        @apply inline-flex align-top justify-center w-1/2 mt-2;
-
-        img {
-            @apply max-w-[80px];
-        }
-    }
-}
-
-.modal-center {
-    @apply grid grid-cols-1 gap-0 h-full mb-10;
-
-    h3 {
-        @apply font-bold mt-2 text-lg font-space-mono;
-
-        span {
-            @apply font-normal;
-            font-family: Roboto, sans-serif;
-        }
-    }
-
-    .links {
-        ul {
-            list-style-type: disc;
-        }
-        li .text-gold {
-            @apply ps-2;
-        }
-    }
-}
-
-.modal-left {
-    @apply float-start grid grid-cols-1 text-sm me-4 pt-4 w-1/6 h-full;
-    @apply float-start grid grid-cols-1 text-sm me-4 pt-4 w-1/6 h-full;
-
-    h3 {
-        @apply font-bold mt-2 text-sm font-space-mono;
-    }
-}
-
-.modal-right {
-    @apply float-end grid grid-cols-1 text-sm ms-4 pt-2 w-1/6;
-
-    h3 {
-        @apply font-bold mt-3 text-sm font-space-mono;
-    }
-}
-
-.description {
-    @apply text-sm;
-}
 
 .project {
     @apply overflow-hidden rounded-lg border-1 border-terminal-black-700 z-0 h-[260px] relative align-bottom;
