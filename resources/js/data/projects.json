@@ -39,9 +39,10 @@
         "technologies": ["LDAP", "Active Directory", "JWT", "Redis", "REST APIs"],
         "tools": ["Jira", "Github", "Jenkins", "Azure Pipelines", "NPM", "PHPUnit"],
         "company": "Glen Raven",
-        "primaryImage": {"src": "flag-board/dashboard.png", "title": "Main Dashboard"},
+        "primaryImage": "flag-board/dashboard.png",
         "bgImage": "flag-board/flag-board-bg.png",
         "images": [
+            {"src": "flag-board/dashboard.png", "title": "Main Dashboard"},
             {"src": "flag-board/login.png", "title": "Admin Login"},
             {"src": "flag-board/reports.png", "title": "Reports"},
             {"src": "flag-board/new-request.png", "title": "New Flag Request"},
@@ -63,7 +64,7 @@
         "technologies": ["Redis", "REST APIs"],
         "tools": ["Jira", "Bitbucket", "Jenkins", "NPM", "PHPUnit"],
         "company": "ARCA",
-        "primaryImage": {"src": "concert-web/concert-bg.png", "title": "User Administration"},
+        "primaryImage": "concert-web/concert-bg.png",
         "bgImage": "concert-web/concert-bg.png",
         "images": [
             {"src": "concert-web/concert-nav.png", "title": "Administration"},
@@ -115,7 +116,7 @@
         "technologies": [],
         "tools": ["Pivotal", "QuickBase"],
         "company": "Digital Insight (Intuit)",
-        "primaryImage": {"src": "pm-dashboard/pm-db-1.png", "title": "Main Dashboard"},
+        "primaryImage": "/pm-dashboard/pm-db-1.png",
         "bgImage": "/pm-dashboard/pm-db-1.png",
         "images": [
             {"src": "pm-dashboard/pm-db-2.png", "title": "Project Details - Checklist"},

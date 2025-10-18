@@ -47,7 +47,7 @@ const title = `project: <span>${props.project.title}</span>`;
              class="primary-image"
              @click="imageModalRef?.openImageModal(project.primaryImage)"
         >
-            <img :src="`/images/projects/${project.primaryImage.src}`"
+            <img :src="`/images/projects/${project.primaryImage}`"
                  :title="project.primaryImage.title"
                  :alt="project.primaryImage.alt ?? ''" />
         </div>
