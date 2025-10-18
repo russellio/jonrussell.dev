@@ -79,8 +79,8 @@
         /*@apply text-terminal-black-200 hover:bg-terminal-black/10;*/
         /*@apply border-1 border-transparent hover:border-terminal-black/50 shadow-none hover:shadow-none outline-none;*/
 
-        @apply font-bold rounded-md bg-terminal-black-700 py-2 px-4 border border-transparent text-center text-sm text-white;
-
+        @apply font-bold rounded-md bg-terminal-black-700 py-2 px-4 border border-transparent;
+        @apply text-center text-sm text-white cursor-pointer;
         @apply transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:shadow-none;
     }
 

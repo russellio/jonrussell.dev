@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import '../../css/modal.css';
+import { ref } from 'vue';
 import Modal from '@/components/Modal.vue';
+import ImageModal from '@/components/ImageModal.vue';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -17,18 +19,20 @@ const props = defineProps({
     },
 });
 
-const projectHasProperty = (project: any, property: any) => {
+const imageModalRef = ref<InstanceType<typeof ImageModal> | null>(null);
+
+const projectHasProp = (project: any, property: any) => {
     return project.hasOwnProperty(property) && project[property].length > 0;
 };
 
-const hasModalLeftContent = (project: any) => {
-    return projectHasProperty(project, 'primaryImage');
+const hasModalLeft = (project: any) => {
+    return projectHasProp(project, 'primaryImage');
 };
 
-const hasModalRightContent = (project: any) => {
-    return projectHasProperty(project, 'skills')
-        || projectHasProperty(project, 'technologies')
-        || projectHasProperty(project, 'tools');
+const hasModalRight = (project: any) => {
+    return projectHasProp(project, 'skills')
+        || projectHasProp(project, 'technologies')
+        || projectHasProp(project, 'tools');
 };
 
 const title = `project: <span>${props.project.title}</span>`;
@@ -38,28 +42,37 @@ const title = `project: <span>${props.project.title}</span>`;
 
 <Modal :project="project" modalId="project-modal" :title="title">
 
-    <div v-if="hasModalLeftContent(project)" class="modal-left">
-        <div v-if="projectHasProperty(project, 'primaryImage')" class="primary-image">
-            <img :src="project.primaryImage" alt="Project Image" />
+    <div v-if="hasModalLeft(project)" class="modal-left">
+        <div v-if="projectHasProp(project, 'primaryImage')"
+             class="primary-image"
+             @click="imageModalRef?.openImageModal(project.primaryImage)"
+        >
+            <img :src="`/images/projects/${project.primaryImage.src}`"
+                 :title="project.primaryImage.title"
+                 :alt="project.primaryImage.alt ?? ''" />
         </div>
-        <div v-if="projectHasProperty(project, 'images')" class="thumbnails">
-            <div v-for="(image, index) in project.images" :key="index" class="thumbnail">
-                <a :href="image.src" target="_blank"><img :src="image.src" :alt="image.alt" /></a>
+        <div v-if="projectHasProp(project, 'images')" class="thumbnails">
+            <div v-for="(image, index) in project.images"
+                 :key="index"
+                 class="thumbnail"
+                 @click="imageModalRef?.openImageModal(image)"
+            >
+                <img v-if="image?.src" :src="`/images/projects/${image.src}`" :title="image.title" :alt="image.alt" />
             </div>
         </div>
     </div>
 
     <div class="modal-center">
-        <div v-if="projectHasProperty(project, 'company')" class="company">
+        <div v-if="projectHasProp(project, 'company')" class="company">
             <h3>company: <span>{{ project.company }}</span></h3>
         </div>
 
-        <div v-if="projectHasProperty(project, 'description')" class="description">
+        <div v-if="projectHasProp(project, 'description')" class="description">
             <h3>description:</h3>
             <div v-html="project.description" />
         </div>
 
-        <div v-if="projectHasProperty(project, 'links')" class="links">
+        <div v-if="projectHasProp(project, 'links')" class="links">
             <h3>links:</h3>
             <ul class="fa-ul">
                 <li v-for="(link, index) in project.links" :key="index">
@@ -70,8 +83,8 @@ const title = `project: <span>${props.project.title}</span>`;
         </div>
     </div>
 
-    <div v-if="hasModalRightContent(project)" class="modal-right">
-        <div v-if="projectHasProperty(project, 'skills')" class="skills">
+    <div v-if="hasModalRight(project)" class="modal-right">
+        <div v-if="projectHasProp(project, 'skills')" class="skills">
             <h3>skills:</h3>
             <ul class="fa-ul">
                 <li v-for="(skill, index) in project.skills" :key="index">
@@ -81,7 +94,7 @@ const title = `project: <span>${props.project.title}</span>`;
             </ul>
         </div>
 
-        <div v-if="projectHasProperty(project, 'technologies')" class="technologies">
+        <div v-if="projectHasProp(project, 'technologies')" class="technologies">
             <h3>tech:</h3>
             <ul class="fa-ul">
                 <li v-for="(tech, index) in project.technologies" :key="index">
@@ -91,7 +104,7 @@ const title = `project: <span>${props.project.title}</span>`;
             </ul>
         </div>
 
-        <div v-if="projectHasProperty(project, 'tools')" class="tools">
+        <div v-if="projectHasProp(project, 'tools')" class="tools">
             <h3>tools:</h3>
             <ul class="fa-ul">
                 <li v-for="(tool, index) in project.tools" :key="index">
@@ -102,6 +115,7 @@ const title = `project: <span>${props.project.title}</span>`;
         </div>
     </div>
 
+    <ImageModal ref="imageModalRef" />
 </Modal>
 
 </template>
@@ -114,8 +128,6 @@ h3 {
 }
 
 .primary-image {
-    @apply p-1;
-
     img {
         @apply w-full object-fill;
     }
@@ -126,13 +138,10 @@ h3 {
 }
 
 .thumbnails {
+    @apply grid grid-cols-2 gap-1;
 
     .thumbnail {
-        @apply inline-flex align-top justify-center w-1/2 mt-2;
-
-        img {
-            @apply max-w-[80px];
-        }
+        @apply mt-1 overflow-hidden max-w-[80px] max-h-[80px] cursor-pointer;
     }
 }
 </style>

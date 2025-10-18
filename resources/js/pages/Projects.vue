@@ -40,8 +40,12 @@ const openProjectModal = (project: any) => {
 
                     <a aria-label="View project details" class="cursor-pointer">
                         <div class="group project" @click="openProjectModal(project)">
-                            <img :src="project.bgImage" alt="Project Image" class="project-image"
-                                 :style="`object-position: ${project.bgPositionX} ${project.bgPositionY}`" />
+                            <img :src="`/images/projects/${project.bgImage}`"
+                                 alt="Project Image"
+                                 :title="`Project: ${project.title}`"
+                                 class="project-image"
+                                 :style="`object-position: ${project.bgPositionX} ${project.bgPositionY}`"
+                            />
 
                             <div class="project-title-backdrop">
                                 <h1>{{ project.title }}</h1>
@@ -78,7 +82,6 @@ const openProjectModal = (project: any) => {
         <!-- Single Project Modal -->
         <ProjectModal
             v-if="isModalOpen && selectedProject"
-
             :project="selectedProject"
         />
     </App>
@@ -94,11 +97,11 @@ const openProjectModal = (project: any) => {
 }
 
 .project-image {
-    @apply absolute opacity-40 transition-opacity duration-300 ease-in-out group-hover:opacity-100;
+    @apply absolute opacity-40 transition-opacity duration-300 group-hover:opacity-100;
     @apply object-none z-10 bg-terminal-black;
     object-position: -30px -130px;
     /*@apply saturate-100 transition-[saturate] duration-300 ease-in-out group-hover:saturate-0;*/
-    @apply blur-xs transition-[blur] duration-300 ease-in-out group-hover:blur-none;
+    @apply blur-[1px] transition-[blur] duration-300 ease-in-out group-hover:blur-none;
     /*@apply grayscale-0 transition-[grayscale] duration-300 ease-in-out group-hover:grayscale-100;*/
 }
 

@@ -53,5 +53,6 @@ const props = defineProps({
 </template>
 
 <style scoped>
+@reference "../../css/app.css";
 
 </style>
