@@ -1,57 +1,124 @@
 <script setup lang="ts">
-import ProjectModal from '@/components/ProjectModal.vue';
-const props = defineProps({
-    modalId: {
-        type: String,
-        required: true
-    },
-    project: {
-        type: Object,
-        required: false
+import Modal from '@/components/Modal.vue';
+import { ref } from 'vue';
+import '../../css/modal.css';
+
+const form = ref({
+    email: '',
+    subject: '',
+    message: '',
+});
+
+const isLoading = ref(false);
+const errors = ref({});
+const successMessage = ref('');
+
+const submitForm = async () => {
+    isLoading.value = true;
+    errors.value = {};
+    successMessage.value = '';
+
+    try {
+        const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
+                Accept: 'application/json',
+            },
+            body: JSON.stringify(form.value),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            if (response.status === 422) {
+                errors.value = data.errors || {};
+            }
+            throw new Error(data.message || 'Failed to send message');
+        }
+
+        form.value = { email: '', subject: '', message: '' };
+        successMessage.value = data.message || 'Message sent successfully!';
+
+        setTimeout(() => {
+            successMessage.value = '';
+        }, 5000);
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        if (!errors.value || Object.keys(errors.value).length === 0) {
+            errors.value.general = error.message || 'Failed to send message. Please try again.';
+        }
+    } finally {
+        isLoading.value = false;
     }
-})
-const title = props.project?.title ?? props.modalId.toUpperCase();
+};
 </script>
 
 <template>
-    <ProjectModal :modalId="props.modalId" :title="title">
+    <Modal modalId="contact-modal"
+           title="Contact Me"
+           :showSubmit="true"
+           submitText="Send Message"
+           :isLoading="isLoading"
+           @submit="submitForm"
+    >
         <!-- Contact Modal -->
-        <div class="modal-content">
-
-            <div class="flex flex-col gap-4 p-6">
-                <div class="w-full">
-                    <label class="block mb-2 text-sm">
-                        Your Email
-                    </label>
-                    <input type="email" class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Your Email" />
-                </div>
-                <div class="w-full">
-                    <label class="block mb-2 text-sm">
-                        Subject
-                    </label>
-                    <input type="email" class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Your Email" />
-                </div>
-                <div class="w-full">
-                    <label class="block mb-2 text-sm">
-                        Message
-                    </label>
-                    <input type="email" class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Your Email" />
-                </div>
-<!--                <div class="w-full">-->
-<!--                    <label class="block mb-2 text-sm">-->
-<!--                        Password-->
-<!--                    </label>-->
-<!--                    <input type="password" class="w-full bg-transparent text-sm border-1 border-terminal-black-500 rounded-md px-3 py-2 transition duration-300 ease shadow-sm focus:shadow" placeholder="Your Password" />-->
-<!--                </div>-->
+        <div class="flex w-full flex-col gap-4 p-6">
+            <div v-if="successMessage" class="success">
+                {{ successMessage }}
             </div>
 
+            <div v-if="errors.general" class="error">
+                {{ errors.general }}
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input
+                    id="email"
+                    v-model="form.email"
+                    type="email"
+                    placeholder="your.email@example.com"
+                    :class="{ 'border-red-500': errors.email }"
+                />
+                <p v-if="errors.email" class="mt-1 text-sm text-red-600">{{ errors.email[0] }}</p>
+            </div>
+
+            <div>
+                <label for="subject">Subject:</label>
+                <input id="subject" v-model="form.subject" type="text" placeholder="Hey!!!"
+                       :class="{ 'border-red-500': errors.subject }" />
+                <p v-if="errors.subject" class="mt-1 text-sm text-red-600">{{ errors.subject[0] }}</p>
+            </div>
+
+            <div>
+                <label for="message">Message:</label>
+                <textarea
+                    id="message"
+                    v-model="form.message"
+                    placeholder="Your message here..."
+                    rows="4"
+                    :class="{ 'border-error': errors.message }"
+                ></textarea>
+                <p v-if="errors.message" class="mt-1 text-sm error">{{ errors.message[0] }}</p>
+            </div>
         </div>
-
-    </ProjectModal>
-
+    </Modal>
 </template>
 
 <style scoped>
 @reference "../../css/app.css";
 
+label {
+    @apply mb-2 block font-space-mono text-lg font-bold text-white;
+}
+
+input,
+textarea {
+    @apply font-mono;
+    @apply w-full rounded-md border bg-white px-3 py-2 text-lg text-terminal-black;
+    @apply placeholder:text-terminal-black-400 placeholder:italic;
+    @apply focus:border-blue focus:shadow focus:outline-none;
+}
 </style>

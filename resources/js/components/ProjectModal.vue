@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import '../../css/modal.css';
-import { ref } from 'vue';
-import Modal from '@/components/Modal.vue';
 import ImageModal from '@/components/ImageModal.vue';
+import Modal from '@/components/Modal.vue';
+import { ref } from 'vue';
+import '../../css/modal.css';
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faAward } from '@fortawesome/free-solid-svg-icons';
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
-import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUpRightFromSquare, faAward, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 library.add(faAward, faCaretRight, faArrowUpRightFromSquare);
 
@@ -30,101 +28,89 @@ const hasModalLeft = (project: any) => {
 };
 
 const hasModalRight = (project: any) => {
-    return projectHasProp(project, 'skills')
-        || projectHasProp(project, 'technologies')
-        || projectHasProp(project, 'tools');
+    return projectHasProp(project, 'skills') || projectHasProp(project, 'technologies') || projectHasProp(project, 'tools');
 };
 
 const title = `project: <span>${props.project.title}</span>`;
 </script>
 
 <template>
-
-<Modal :project="project" modalId="project-modal" :title="title">
-
-    <div v-if="hasModalLeft(project)" class="modal-left">
-        <div v-if="projectHasProp(project, 'primaryImage')"
-             class="primary-image"
-             @click="imageModalRef?.openImageModal(project.primaryImage)"
-        >
-            <img :src="`/images/projects/${project.primaryImage}`"
-                 :title="project.primaryImage.title"
-                 :alt="project.primaryImage.alt ?? ''" />
-        </div>
-        <div v-if="projectHasProp(project, 'images')" class="thumbnails">
-            <div v-for="(image, index) in project.images"
-                 :key="index"
-                 class="thumbnail"
-                 @click="imageModalRef?.openImageModal(image)"
-            >
-                <img v-if="image?.src" :src="`/images/projects/${image.src}`" :title="image.title" :alt="image.alt" />
+    <Modal modalId="project-modal" :title="title">
+        <div v-if="hasModalLeft(project)" class="modal-left">
+            <div v-if="projectHasProp(project, 'primaryImage')" class="primary-image" @click="imageModalRef?.openImageModal(project.primaryImage)">
+                <img :src="`/images/projects/${project.primaryImage}`" :title="project.primaryImage.title" :alt="project.primaryImage.alt ?? ''" />
+            </div>
+            <div v-if="projectHasProp(project, 'images')" class="thumbnails">
+                <div v-for="(image, index) in project.images" :key="index" class="thumbnail" @click="imageModalRef?.openImageModal(image)">
+                    <img v-if="image?.src" :src="`/images/projects/${image.src}`" :title="image.title" :alt="image.alt" />
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal-center">
-        <div v-if="projectHasProp(project, 'company')" class="company">
-            <h3>company: <span>{{ project.company }}</span></h3>
+        <div class="modal-center">
+            <div v-if="projectHasProp(project, 'company')" class="company">
+                <h3>
+                    company: <span>{{ project.company }}</span>
+                </h3>
+            </div>
+
+            <div v-if="projectHasProp(project, 'description')" class="description">
+                <h3>description:</h3>
+                <div v-html="project.description" />
+            </div>
+
+            <div v-if="projectHasProp(project, 'links')" class="links">
+                <h3>links:</h3>
+                <ul class="fa-ul">
+                    <li v-for="(link, index) in project.links" :key="index">
+                        <a :href="link.url" target="_blank">{{ link.title }}</a>
+                        <FontAwesomeIcon :icon="faArrowUpRightFromSquare" class="ps-2 text-gold" size="sm" />
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div v-if="projectHasProp(project, 'description')" class="description">
-            <h3>description:</h3>
-            <div v-html="project.description" />
+        <div v-if="hasModalRight(project)" class="modal-right">
+            <div v-if="projectHasProp(project, 'skills')" class="skills">
+                <h3>skills:</h3>
+                <ul class="fa-ul">
+                    <li v-for="(skill, index) in project.skills" :key="index">
+                        <span class="fa-li"><FontAwesomeIcon icon="fa-solid fa-caret-right" class="text-gold" /></span>
+                        {{ skill }}
+                    </li>
+                </ul>
+            </div>
+
+            <div v-if="projectHasProp(project, 'technologies')" class="technologies">
+                <h3>tech:</h3>
+                <ul class="fa-ul">
+                    <li v-for="(tech, index) in project.technologies" :key="index">
+                        <span class="fa-li"><FontAwesomeIcon icon="fa-solid fa-caret-right" class="text-gold" /></span>
+                        {{ tech }}
+                    </li>
+                </ul>
+            </div>
+
+            <div v-if="projectHasProp(project, 'tools')" class="tools">
+                <h3>tools:</h3>
+                <ul class="fa-ul">
+                    <li v-for="(tool, index) in project.tools" :key="index">
+                        <span class="fa-li"><FontAwesomeIcon :icon="faCaretRight" class="text-gold" /></span>
+                        {{ tool }}
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div v-if="projectHasProp(project, 'links')" class="links">
-            <h3>links:</h3>
-            <ul class="fa-ul">
-                <li v-for="(link, index) in project.links" :key="index">
-                    <a :href="link.url" target="_blank">{{ link.title }}</a>
-                    <FontAwesomeIcon :icon="faArrowUpRightFromSquare" class="text-gold ps-2" size="sm" />
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div v-if="hasModalRight(project)" class="modal-right">
-        <div v-if="projectHasProp(project, 'skills')" class="skills">
-            <h3>skills:</h3>
-            <ul class="fa-ul">
-                <li v-for="(skill, index) in project.skills" :key="index">
-                    <span class="fa-li"><FontAwesomeIcon icon="fa-solid fa-caret-right" class="text-gold" /></span>
-                    {{ skill }}
-                </li>
-            </ul>
-        </div>
-
-        <div v-if="projectHasProp(project, 'technologies')" class="technologies">
-            <h3>tech:</h3>
-            <ul class="fa-ul">
-                <li v-for="(tech, index) in project.technologies" :key="index">
-                    <span class="fa-li"><FontAwesomeIcon icon="fa-solid fa-caret-right" class="text-gold" /></span>
-                    {{ tech }}
-                </li>
-            </ul>
-        </div>
-
-        <div v-if="projectHasProp(project, 'tools')" class="tools">
-            <h3>tools:</h3>
-            <ul class="fa-ul">
-                <li v-for="(tool, index) in project.tools" :key="index">
-                    <span class="fa-li"><FontAwesomeIcon :icon="faCaretRight" class="text-gold" /></span>
-                    {{ tool }}
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <ImageModal ref="imageModalRef" />
-</Modal>
-
+        <ImageModal ref="imageModalRef" />
+    </Modal>
 </template>
 
 <style scoped>
 @reference "../../css/app.css";
 
 h3 {
-    @apply font-bold mt-2 text-sm font-space-mono;
+    @apply mt-2 font-space-mono text-sm font-bold;
 }
 
 .primary-image {
@@ -141,7 +127,7 @@ h3 {
     @apply grid grid-cols-2 gap-1;
 
     .thumbnail {
-        @apply mt-1 overflow-hidden max-w-[80px] max-h-[80px] cursor-pointer;
+        @apply mt-1 max-h-[80px] max-w-[80px] cursor-pointer overflow-hidden;
     }
 }
 </style>

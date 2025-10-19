@@ -42,19 +42,6 @@ const mobileMenuOpen = ref(false);
           </button>
         </div>
 
-<!--        <div class="hidden md:block">-->
-<!--          <div class="flex items-center space-x-8">-->
-<!--            <Link v-for="item in navigation" :key="item.name"-->
-<!--                  :href="item.route"-->
-<!--                  @click="scrollToSection(item.route)"-->
-<!--                  class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"-->
-<!--                  as="button"-->
-<!--            >-->
-<!--              {{ item.name}}-->
-<!--            </Link>-->
-<!--          </div>-->
-<!--        </div>-->
-
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
               <button
@@ -112,7 +99,6 @@ button {
     border: 3px ridge var(--color-primary);
     outline: none;
     transition: 1s;
-/*    border-radius: 0.3em;*/
     font-size: 16px;
     margin: 3rem 1rem 0 1rem;
 }
@@ -144,7 +130,7 @@ button:hover::before, button:hover::after {
 }
 
 button:hover {
-    box-shadow: inset 0px 0px 25px #1479EA;
+    box-shadow: inset 0 0 25px #1479EA;
 }
 
 </style>

@@ -2,6 +2,12 @@
 
 @reference '../css/app.css';
 
+#contact-modal {
+    .modal {
+        @apply w-2/3 mx-auto;
+    }
+}
+
 .modal-wrapper {
     @apply fixed inset-0 z-[9999] flex items-start justify-center pt-30 bg-terminal-black/5 backdrop-blur-sm overflow-y-auto;
 
@@ -12,6 +18,10 @@
 
     .modal-header {
         @apply p-4 pb-2 flex justify-between items-center;
+
+        h1 {
+            @apply text-3xl font-extrabold
+        }
     }
 
     .modal-content {
@@ -35,8 +45,8 @@
             @apply text-lg;
 
             span {
-                @apply font-normal;
-                font-family: Roboto, monospace, sans-serif;
+                @apply font-normal font-mono;
+                /*font-family: Roboto, monospace, sans-serif;*/
             }
         }
 
@@ -68,8 +78,8 @@
         @apply text-2xl ms-10 font-bold text-secondary;
 
         span {
-            @apply text-blue text-4xl;
-            font-family: Roboto, sans-serif;
+            @apply text-blue text-4xl font-mono;
+            /*font-family: Roboto, sans-serif;*/
         }
     }
 
@@ -79,9 +89,10 @@
         /*@apply text-terminal-black-200 hover:bg-terminal-black/10;*/
         /*@apply border-1 border-transparent hover:border-terminal-black/50 shadow-none hover:shadow-none outline-none;*/
 
-        @apply font-bold rounded-md bg-terminal-black-700 py-2 px-4 border border-transparent;
+        @apply rounded-md bg-terminal-black-700 py-2 px-4 border border-transparent;
         @apply text-center text-sm text-white cursor-pointer;
-        @apply transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:shadow-none;
+        @apply hover:shadow-lg hover:border-secondary;
+        @apply font-space-mono font-extrabold tracking-wide;
     }
 
     .btn-submit {
@@ -89,6 +100,17 @@
         /*@apply transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed;*/
         /*@apply data-[shape=pill]:rounded-full data-[width=full]:w-full focus:shadow-none text-sm rounded-md py-2 px-4;*/
         /*@apply shadow-sm hover:shadow-md bg-terminal-black-800 border-terminal-black-800 text-terminal-black-50;*/
-        @apply hover:bg-terminal-black-700 hover:border-terminal-black-700;
+        /*@apply hover:bg-terminal-black-700;*/
+    }
+
+    .success, .error {
+        @apply mb-4 rounded-md;
+        /*@apply text-center font-bold mt-4;*/
+    }
+    .success {
+        @apply bg-green-100 p-4 text-green-700;
+    }
+    .error {
+        @apply bg-red-100 p-4 text-red-700;
     }
 }

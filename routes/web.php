@@ -15,6 +15,6 @@ Route::get('/projects', function () {
     return Inertia::render('Projects');
 })->name('projects');
 
-Route::get('/contact', function () {
-    return Inertia::render('Contact');
-})->name('contact');
+//Route::get('/contact', function () {
+//    return Inertia::render('Contact');
+//})->name('contact');
