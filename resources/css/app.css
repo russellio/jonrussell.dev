@@ -1,12 +1,22 @@
 @import 'tailwindcss';
 @import '@fontsource/space-mono';
-/*@import "@nuxt/ui";*/
+/*@import '@fontsource/trade-winds';*/
+/*@import '@fontsource/barrio';*/
+/*@import '@fontsource/doto';*/
+@import '@fontsource/sixtyfour';
+/*@import '@fontsource-variable/sixtyfour';*/
+/*@import '@fontsource-variable/sixtyfour-convergence';*/
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-space-mono: "Space Mono", "monospace";
+    --font-space-mono: 'Space Mono', monospace;
+    /*--font-trade-winds: 'Trade Winds', monospace;*/
+    /*--font-barrio: 'Barrio', monospace;*/
+    /*--font-doto: 'Doto', monospace;*/
+    --font-sixtyfour: 'Sixtyfour', monospace;
+    /*--font-sixtyfour-convergence: 'Sixtyfour Convergence Variable', monospace;*/
 
     --color-primary: var(--color-blue);
     --color-secondary: var(--color-burgundy-600);
@@ -61,7 +71,7 @@
 }
 
 h1 {
-    @apply text-2xl text-blue-300 font-space-mono;
+    @apply text-2xl text-primary font-space-mono;
 }
 h2 {
     @apply text-4xl text-secondary uppercase text-center font-space-mono font-bold;
@@ -107,15 +117,15 @@ body {
 
 .text-outline {
     text-shadow:
-        -1px 0 1px var(--color-blue-50),
-        1px 0 1px var(--color-blue-50),
-        0 0 1px var(--color-blue-50),
-        -1px -1px 1px var(--color-blue-50),
-        1px -1px 1px var(--color-blue-50),
-        0 -1px 1px var(--color-blue-50),
-        -1px 1px 1px var(--color-blue-50),
-        1px 1px 1px var(--color-blue-50),
-        0 1px 1px var(--color-blue-50);
+        -1px 0 1px var(--color-white),
+        1px 0 1px var(--color-white),
+        0 0 1px var(--color-white),
+        -1px -1px 1px var(--color-white),
+        1px -1px 1px var(--color-white),
+        0 -1px 1px var(--color-white),
+        -1px 1px 1px var(--color-white),
+        1px 1px 1px var(--color-white),
+        0 1px 1px var(--color-white);
 }
 
 .section-wrapper {
