@@ -1,11 +1,11 @@
 @import 'tailwindcss';
 @import '@fontsource/space-mono';
-/*@import '@fontsource/trade-winds';*/
-/*@import '@fontsource/barrio';*/
-/*@import '@fontsource/doto';*/
+/* @import '@fontsource/trade-winds'; */
+/* @import '@fontsource/barrio'; */
+/* @import '@fontsource/doto'; */
 @import '@fontsource/sixtyfour';
-/*@import '@fontsource-variable/sixtyfour';*/
-/*@import '@fontsource-variable/sixtyfour-convergence';*/
+/* @import '@fontsource-variable/sixtyfour'; */
+/* @import '@fontsource-variable/sixtyfour-convergence'; */
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -73,12 +73,15 @@
 h1 {
     @apply text-2xl text-primary font-space-mono;
 }
+
 h2 {
     @apply text-4xl text-secondary uppercase text-center font-space-mono font-bold;
 }
+
 html {
     scroll-behavior: smooth;
 }
+
 body {
     @apply bg-dark-blue;
 }
@@ -105,8 +108,8 @@ body {
 
     h1 {
         @apply text-3xl font-extrabold text-secondary;
-        /*@apply bg-gradient-to-b from-blue-900 to-blue-400 bg-clip-text text-transparent;*/
-        /*@apply drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)];*/
+        /*@apply bg-gradient-to-b from-blue-900 to-blue-400 bg-clip-text text-transparent; */
+        /*@apply drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]; */
     }
 }
 .card:hover {
@@ -132,50 +135,59 @@ body {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
+.success, .error {
+    @apply mb-4 rounded-md;
+}
+.success {
+    @apply bg-green-100 p-4 text-green-700;
+}
+.error {
+    @apply bg-red-100 p-4 text-red-700;
+}
 
-/*button {*/
-/*    width: 10em;*/
-/*    position: relative;*/
-/*    height: 3.5em;*/
-/*    border: 3px ridge #149CEA;*/
-/*    outline: none;*/
-/*    background-color: transparent;*/
-/*    color: white;*/
-/*    transition: 1s;*/
-/*    border-radius: 0.3em;*/
-/*    font-size: 16px;*/
-/*    font-weight: bold;*/
-/*    cursor: pointer;*/
-/*}*/
+/* button { */
+/*    width: 10em; */
+/*    position: relative; */
+/*    height: 3.5em; */
+/*    border: 3px ridge #149CEA; */
+/*    outline: none; */
+/*    background-color: transparent; */
+/*    color: white; */
+/*    transition: 1s; */
+/*    border-radius: 0.3em; */
+/*    font-size: 16px; */
+/*    font-weight: bold; */
+/*    cursor: pointer; */
+/* } */
 
-/*button::after {*/
-/*    content: "";*/
-/*    position: absolute;*/
-/*    top: -10px;*/
-/*    left: 3%;*/
-/*    width: 95%;*/
-/*    height: 40%;*/
-/*    background-color: #212121;*/
-/*    transition: 0.5s;*/
-/*    transform-origin: center;*/
-/*}*/
+/* button::after { */
+/*    content: ""; */
+/*    position: absolute; */
+/*    top: -10px; */
+/*    left: 3%; */
+/*    width: 95%; */
+/*    height: 40%; */
+/*    background-color: #212121; */
+/*    transition: 0.5s; */
+/*    transform-origin: center; */
+/* } */
 
-/*button::before {*/
-/*    content: "";*/
-/*    transform-origin: center;*/
-/*    position: absolute;*/
-/*    top: 80%;*/
-/*    left: 3%;*/
-/*    width: 95%;*/
-/*    height: 40%;*/
-/*    background-color: #212121;*/
-/*    transition: 0.5s;*/
-/*}*/
+/* button::before { */
+/*    content: ""; */
+/*    transform-origin: center; */
+/*    position: absolute; */
+/*    top: 80%; */
+/*    left: 3%; */
+/*    width: 95%; */
+/*    height: 40%; */
+/*    background-color: #212121; */
+/*    transition: 0.5s; */
+/*} */
 
-/*button:hover::before, button:hover::after {*/
-/*    transform: scale(0)*/
-/*}*/
+/* button:hover::before, button:hover::after { */
+/*    transform: scale(0) */
+/* } */
 
-/*button:hover {*/
-/*    box-shadow: inset 0px 0px 25px #1479EA;*/
-/*}*/
+/* button:hover { */
+/*    box-shadow: inset 0px 0px 25px #1479EA; */
+/* } */

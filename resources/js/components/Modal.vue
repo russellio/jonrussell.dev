@@ -32,6 +32,10 @@ const props = defineProps({
     isLoading: {
         type: Boolean,
         default: false
+    },
+    disabled: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -74,7 +78,7 @@ const handleSubmit = () => {
                 <button 
                     v-if="showSubmit" 
                     @click="handleSubmit"
-                    :disabled="isLoading"
+                    :disabled="isLoading || disabled"
                     class="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
                 >
                     <span v-if="isLoading" class="animate-spin">
