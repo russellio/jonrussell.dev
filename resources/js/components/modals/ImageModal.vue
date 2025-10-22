@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import '../../css/modal.css';
+import '../../../css/modal.css';
 import { ref } from 'vue';
-import type { Image } from '@/types';
+import type { Image } from '@/js/types';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -42,7 +42,7 @@ defineExpose({
 </template>
 
 <style scoped>
-@reference "../../css/app.css";
+@reference "@/css/app.css";
 
 .image-modal-wrapper {
     @apply fixed inset-0 bg-black/75 items-center justify-center p-4 z-50;

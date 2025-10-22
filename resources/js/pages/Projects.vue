@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import App from '@/App.vue';
-import ProjectModal from '@/components/ProjectModal.vue';
-import { useModal } from '@/composables/useModal';
+import App from '@/js/App.vue';
+import ProjectModal from '@/js/components/modals/ProjectModal.vue';
+import { useModal } from '@/js/composables/useModal';
 import { computed, ref } from 'vue';
-import projectData from '@/data/projects.json';
+import projectData from '@/js/data/projects.json';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -88,7 +88,7 @@ const openProjectModal = (project: any) => {
 </template>
 
 <style scoped>
-@reference "../../css/app.css";
+@reference "@/css/app.css";
 
 
 

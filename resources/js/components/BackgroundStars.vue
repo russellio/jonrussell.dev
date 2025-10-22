@@ -170,7 +170,7 @@ onMounted(() => {
 </template>
 
 <style>
-@reference "../../css/app.css";
+@reference "@/css/app.css";
 
 .sky {
     @apply fixed w-full h-full overflow-hidden;

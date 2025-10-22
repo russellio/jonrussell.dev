@@ -1,4 +1,4 @@
-import { AppPageProps } from '@/types/index';
+import { AppPageProps } from '@/js/types/index';
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {

@@ -1,4 +1,4 @@
-import { useModalStore } from '@/stores/modalStore';
+import { useModalStore } from '@/js/stores/modalStore';
 
 export function useModal() {
     const modalStore = useModalStore();

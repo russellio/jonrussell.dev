@@ -86,7 +86,7 @@ const mobileMenuOpen = ref(false);
 </template>
 
 <style scoped>
-@reference "../../css/app.css";
+@reference "@/css/app.css";
 
 /*.primary-btn {
   @apply w-40 relative h-14 border-3 border-[#149CEA] outline-none bg-transparent text-white transition-all duration-1000 rounded-sm text-base font-bold cursor-pointer hover:shadow-[inset_0px_0px_25px_#1479EA] before:content-[''] before:absolute before:top-[-10px] before:left-[3%] before:w-[95%] before:h-[40%] before:bg-[#212121] before:transition-all before:duration-500 before:origin-center before:transform before:scale-100 hover:before:scale-0 after:content-[''] after:absolute after:top-[80%] after:left-[3%] after:w-[95%] after:h-[40%] after:bg-[#212121] after:transition-all after:duration-500 after:origin-center after:transform after:scale-100 hover:after:scale-0;

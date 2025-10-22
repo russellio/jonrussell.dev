@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import '../../css/modal.css';
-import { useModal } from '@/composables/useModal';
+import { useModal } from '@/js/composables/useModal';
 const { closeModal } = useModal();
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -25,15 +25,15 @@ const props = defineProps({
         required: false,
         default: false
     },
+    submitDisabled: {
+        type: Boolean,
+        default: false
+    },
     submitText: {
         type: String,
         default: 'Submit'
     },
     isLoading: {
-        type: Boolean,
-        default: false
-    },
-    disabled: {
         type: Boolean,
         default: false
     }
@@ -68,17 +68,17 @@ const handleSubmit = () => {
             </div>
 
             <div class="modal-footer">
-                <button 
-                    @click="closeModal(modalId)" 
+                <button
+                    @click="closeModal(modalId)"
                     :disabled="isLoading"
                     class="px-4 py-2 rounded-md bg-gray-300 text-gray-800 hover:bg-gray-400 disabled:opacity-50"
                 >
                     Close
                 </button>
-                <button 
-                    v-if="showSubmit" 
+                <button
+                    v-if="showSubmit"
                     @click="handleSubmit"
-                    :disabled="isLoading || disabled"
+                    :disabled="isLoading || submitDisabled"
                     class="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
                 >
                     <span v-if="isLoading" class="animate-spin">
@@ -95,6 +95,5 @@ const handleSubmit = () => {
 </template>
 
 <style scoped>
-@reference "../../css/app.css";
 
 </style>

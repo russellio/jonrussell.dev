@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Header from '@/layout/Header.vue'
-import Footer from '@/layout/Footer.vue'
-import ContentFrame from '@/components/ContentFrame.vue';
+import Header from '@/js/layout/Header.vue'
+import Footer from '@/js/layout/Footer.vue'
+import ContentFrame from '@/js/components/ContentFrame.vue';
 
 </script>
 

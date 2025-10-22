@@ -1,31 +1,22 @@
 @import 'tailwindcss';
 @import '@fontsource/space-mono';
-/* @import '@fontsource/trade-winds'; */
-/* @import '@fontsource/barrio'; */
-/* @import '@fontsource/doto'; */
 @import '@fontsource/sixtyfour';
-/* @import '@fontsource-variable/sixtyfour'; */
-/* @import '@fontsource-variable/sixtyfour-convergence'; */
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
     --font-space-mono: 'Space Mono', monospace;
-    /*--font-trade-winds: 'Trade Winds', monospace;*/
-    /*--font-barrio: 'Barrio', monospace;*/
-    /*--font-doto: 'Doto', monospace;*/
     --font-sixtyfour: 'Sixtyfour', monospace;
-    /*--font-sixtyfour-convergence: 'Sixtyfour Convergence Variable', monospace;*/
 
     --color-primary: var(--color-blue);
     --color-secondary: var(--color-burgundy-600);
-    --color-success: var(--color-bright-green);
+    --color-success: var(--color-green-700);
     --color-error: var(--color-red);
 
     --color-blue: #1564f4;
     --color-dark-blue: var(--color-blue-950);
-    --color-content: var(--color-terminal-black-50);
+    --color-content: var(--color-terminal-black-50);;
 
     --color-blue-50: #e3e7ee;
     --color-blue-100: #c8d0dc;
@@ -75,7 +66,8 @@ h1 {
 }
 
 h2 {
-    @apply text-4xl text-secondary uppercase text-center font-space-mono font-bold;
+    /*@apply text-4xl text-secondary uppercase text-center font-space-mono font-bold;*/
+    @apply text-5xl text-secondary uppercase text-center font-sixtyfour;
 }
 
 html {
@@ -136,13 +128,13 @@ body {
 }
 
 .success, .error {
-    @apply mb-4 rounded-md;
+    @apply mt-1 mb-4 rounded-md w-11/12 mx-auto text-sm;
 }
 .success {
-    @apply bg-green-100 p-4 text-green-700;
+    @apply bg-green-100 px-4 py-2 text-success;
 }
 .error {
-    @apply bg-red-100 p-4 text-red-700;
+    @apply bg-red-100 px-4 py-2 text-error;
 }
 
 /* button { */

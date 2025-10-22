@@ -1,64 +1,9 @@
 <script setup lang="ts">
-import Modal from '@/components/Modal.vue';
-import { ref, onMounted, onUnmounted, nextTick } from 'vue';
-import '../../css/modal.css';
+import Modal from '@/js/components/Modal.vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+import '../../../css/modal.css';
 
 const turnstileSitekey = "0x4AAAAAAB73z-5VUEsEm3_p";
-
-// TypeScript declarations for Turnstile
-declare global {
-    interface Window {
-        turnstile: {
-            render: (container: string, options: {
-                sitekey: string;
-                callback?: (token: string) => void;
-                'error-callback'?: (error: string) => void;
-                'expired-callback'?: () => void;
-                'timeout-callback'?: () => void;
-            }) => string;
-            reset: (widgetId: string) => void;
-            remove: (widgetId: string) => void;
-        };
-    }
-}
-
-// Load Cloudflare's Turnstile script
-const loadTurnstileScript = (): Promise<void> => {
-    return new Promise((resolve, reject) => {
-        if (window.turnstile) {
-            window.turnstile.reset();
-            resolve();
-            return;
-        }
-
-        // Check if script is already being loaded
-        const existingScript = document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]');
-        if (existingScript) {
-            existingScript.addEventListener('load', () => resolve());
-            existingScript.addEventListener('error', () => reject(new Error('Failed to load Turnstile script')));
-            return;
-        }
-
-        const script = document.createElement('script');
-        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-        script.async = true;
-        script.defer = true;
-        script.onload = () => {
-            console.log('loaded!');
-            // Wait for Turnstile to be fully available
-            const checkTurnstile = () => {
-                if (window.turnstile && typeof window.turnstile.render === 'function') {
-                    resolve();
-                } else {
-                    setTimeout(checkTurnstile, 50);
-                }
-            };
-            checkTurnstile();
-        };
-        script.onerror = () => reject(new Error('Failed to load Turnstile script'));
-        document.head.appendChild(script);
-    });
-};
 
 const form = ref({
     email: '',
@@ -162,26 +107,13 @@ const handleMessageChange = (event: Event) => {
     validateField('message', target.value);
 };
 
-
 function onLoadTurnstile() {
-    turnstileWidgetId.value = window.turnstile.render("#turnstile-container", {
+    turnstileWidgetId.value = turnstile.render("#turnstile-container", {
         sitekey: turnstileSitekey,
         callback: function (token: string) {
             console.log("Turnstile challenge completed:", token);
             turnstileToken.value = token;
         },
-        'error-callback': function (error: string) {
-            console.warn("Turnstile error:", error);
-            turnstileToken.value = '';
-        },
-        'expired-callback': function () {
-            console.log("Turnstile token expired");
-            turnstileToken.value = '';
-        },
-        'timeout-callback': function () {
-            console.log("Turnstile challenge timed out");
-            turnstileToken.value = '';
-        }
     });
 }
 
@@ -209,7 +141,6 @@ const resetForm = async () => {
     isFormSubmitted.value = false;
 
     try {
-        await loadTurnstileScript();
         onLoadTurnstile();
     } catch (error) {
         console.warn('Failed to load Turnstile:', error);
@@ -279,6 +210,7 @@ const submitForm = async () => {
     <Modal modalId="contact-modal"
            title="Contact Me"
            :showSubmit="true"
+           :submitDisabled="!isFormValid || isFormSubmitted"
            submitText="Send Message"
            :isLoading="isLoading"
            @submit="submitForm"
@@ -289,16 +221,8 @@ const submitForm = async () => {
                 {{ successMessage }}
             </div>
 
-            <div v-if="errors.general" class="error">
-                {{ errors.general }}
-            </div>
-
-            <div v-if="errors.turnstile" class="error">
-                {{ errors.turnstile }}
-            </div>
-
-            <div v-if="errors.validation" class="error">
-                {{ errors.validation }}
+            <div v-for="(error, key) in errors" :key="key" class="error">
+                <span v-if="error">{{ key }} {{ error }}</span>
             </div>
 
             <div v-if="!isFormSubmitted" class="form-wrapper">
@@ -312,11 +236,11 @@ const submitForm = async () => {
                         placeholder="your.email@example.com"
                         :class="{
                             'border-red-500': errors.email || validationErrors.email,
-                            'border-green-500': form.email && !validationErrors.email && !errors.email
+                            'border-success': form.email && !validationErrors.email && !errors.email
                         }"
                     />
-                    <p v-if="errors.email" class="mt-1 text-sm text-red-600">{{ errors.email[0] }}</p>
-                    <p v-if="validationErrors.email" class="mt-1 text-sm text-red-600">{{ validationErrors.email }}</p>
+                    <div v-if="errors.email" class="error">{{ errors.email[0] }}</div>
+                    <div v-if="validationErrors.email" class="error">{{ validationErrors.email }}</div>
                 </div>
 
                 <div>
@@ -328,10 +252,10 @@ const submitForm = async () => {
                         placeholder="Hey!!!"
                         :class="{
                             'border-red-500': errors.subject || validationErrors.subject,
-                            'border-green-500': form.subject && !validationErrors.subject && !errors.subject
+                            'border-success': form.subject && !validationErrors.subject && !errors.subject
                         }" />
-                    <p v-if="errors.subject" class="mt-1 text-sm text-red-600">{{ errors.subject[0] }}</p>
-                    <p v-if="validationErrors.subject" class="mt-1 text-sm text-red-600">{{ validationErrors.subject }}</p>
+                    <div v-if="errors.subject" class="error">{{ errors.subject[0] }}</div>
+                    <div v-if="validationErrors.subject" class="error">{{ validationErrors.subject }}</div>
                 </div>
 
                 <div>
@@ -344,11 +268,11 @@ const submitForm = async () => {
                         rows="4"
                         :class="{
                             'border-error': errors.message || validationErrors.message,
-                            'border-green-500': form.message && !validationErrors.message && !errors.message
+                            'border-success': form.message && !validationErrors.message && !errors.message
                         }"
                     ></textarea>
-                    <p v-if="errors.message" class="mt-1 text-sm error">{{ errors.message[0] }}</p>
-                    <p v-if="validationErrors.message" class="mt-1 text-sm text-red-600">{{ validationErrors.message }}</p>
+                    <div v-if="errors.message" class="error">{{ errors.message[0] }}</div>
+                    <div v-if="validationErrors.message" class="error">{{ validationErrors.message }}</div>
                 </div>
 
                 <div class="flex justify-center">
@@ -360,10 +284,10 @@ const submitForm = async () => {
 </template>
 
 <style scoped>
-@reference "../../css/app.css";
+@reference "@/css/app.css";
 
 label {
-    @apply mb-2 block font-space-mono text-lg font-bold text-white;
+    @apply mt-3 mb-2 block font-space-mono text-xl font-bold text-white;
 }
 
 input,

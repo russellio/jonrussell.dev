@@ -14,7 +14,7 @@
 </template>
 
 <style scoped>
-@reference "../../css/app.css";
+@reference "@/css/app.css";
 
 footer {
     @apply text-terminal-black-500 py-8;

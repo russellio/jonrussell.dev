@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-@reference '../css/app.css';
+@reference '@/css/app.css';
 
 #contact-modal {
     .modal {
@@ -103,14 +103,14 @@
         /*@apply hover:bg-terminal-black-700;*/
     }
 
-    .success, .error {
-        @apply mb-4 rounded-md;
-        /*@apply text-center font-bold mt-4;*/
-    }
-    .success {
-        @apply bg-green-100 p-4 text-green-700;
-    }
-    .error {
-        @apply bg-red-100 p-4 text-red-700;
-    }
+    /*.success, .error {*/
+    /*    @apply mb-4 rounded-md;*/
+    /*}*/
+    /*.success {*/
+    /*    !*@apply bg-green-100 p-4 text-green-700;*!*/
+    /*    @apply bg-success px-4 py-2 text-success;*/
+    /*}*/
+    /*.error {*/
+    /*    @apply bg-error p-4 text-error;*/
+    /*}*/
 }

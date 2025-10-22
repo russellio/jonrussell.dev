@@ -21,7 +21,7 @@
 </template>
 
 <style scoped>
-@reference "../../css/app.css";
+@reference "@/css/app.css";
 
 .content-wrapper {
     @apply max-w-7xl px-4 sm:px-6 lg:px-8;

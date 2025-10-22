@@ -3,8 +3,7 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { createPinia } from 'pinia';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
-import ui from '@nuxt/ui/vue-plugin';
-import '../css/app.css';
+import '@/css/app.css';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Jon Russell - Senior Software Engineer';
 
@@ -20,7 +19,6 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
           .use(pinia)
           .use(plugin)
-          .use(ui)
           .mount(el);
     },
     progress: {

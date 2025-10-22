@@ -3,8 +3,8 @@ import { defineConfig } from 'vite';
 import { wayfinder } from '@laravel/vite-plugin-wayfinder';
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
-import ui from '@nuxt/ui/vite'
 import laravel from 'laravel-vite-plugin';
+import path from 'path';
 
 export default defineConfig({
     plugins: [
@@ -22,11 +22,13 @@ export default defineConfig({
                 },
             },
         }),
-        ui({
-            inertia: true
-        }),
         wayfinder({
             formVariants: true,
         }),
     ],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './resources'),
+        },
+    },
 });

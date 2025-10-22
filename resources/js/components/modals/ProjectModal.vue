@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import ImageModal from '@/components/ImageModal.vue';
-import Modal from '@/components/Modal.vue';
+import ImageModal from '@/js/components/modals/ImageModal.vue';
+import Modal from '@/js/components/Modal.vue';
 import { ref } from 'vue';
-import '../../css/modal.css';
+import '../../../css/modal.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowUpRightFromSquare, faAward, faCaretRight } from '@fortawesome/free-solid-svg-icons';
@@ -107,7 +107,7 @@ const title = `project: <span>${props.project.title}</span>`;
 </template>
 
 <style scoped>
-@reference "../../css/app.css";
+@reference "@/css/app.css";
 
 h3 {
     @apply mt-2 font-space-mono text-sm font-bold;

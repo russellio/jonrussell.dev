@@ -1,7 +1,7 @@
 <script setup lang="ts" xmlns:md="http://www.w3.org/1999/html">
-// import Nav from '@/layout/Nav.vue';
-import { useModal } from '@/composables/useModal';
-import Contact from '@/pages/Contact.vue';
+// import Nav from '@/js/layout/Nav.vue';
+import { useModal } from '@/js/composables/useModal';
+import ContactModal from '@/js/components/modals/ContactModal.vue';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -15,7 +15,7 @@ library.add(faLocationDot, faLinkedin, faEnvelope, faUserShield, faCertificate);
 const { isOpen, openModal } = useModal();
 const isModalOpen = computed(() => isOpen('contact-modal'));
 
-const BackgroundStars = defineAsyncComponent(() => import('@/components/BackgroundStars.vue'));
+const BackgroundStars = defineAsyncComponent(() => import('@/js/components/BackgroundStars.vue'));
 const backgroundLoaded = ref(false);
 const showBackground = ref(false);
 const handleBackgroundReady = () => {
@@ -89,7 +89,7 @@ onMounted(() => {
     </div>
 
     <!-- Contact Modal -->
-    <Contact v-if="isModalOpen" />
+    <ContactModal v-if="isModalOpen" />
 
     <!--    <Nav ref="navigation" />-->
 
@@ -97,7 +97,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-@reference "../../css/app.css";
+@reference "@/css/app.css";
 
 .intro-wrapper {
     @apply w-full text-white;
@@ -105,7 +105,7 @@ onMounted(() => {
 }
 
 .intro-content {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-5xl mx-auto;
 }
 
 .intro {
@@ -189,7 +189,6 @@ p {
 .profile-addon-wrapper {
     @apply grid grid-cols-1 justify-items-center md:justify-items-end;
 }
-
 
 /* Fallback background for immediate visibility */
 .fallback-background {

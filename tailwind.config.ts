@@ -12,10 +12,7 @@ export default {
     extend: {
       fontFamily: {
         'space-mono': ['Space Mono', 'monospace'],
-        'barrio': ['Barrio', 'monospace'],
-        'doto': ['Doto', 'monospace'],
         'sixtyfour': ['Sixtyfour', 'monospace'],
-        'sixtyfour-convergence': ['Sixtyfour Convergence Variable', 'monospace'],
       },
       colors: {
         primary: 'var(--color-primary)',
