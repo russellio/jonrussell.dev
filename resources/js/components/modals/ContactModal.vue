@@ -26,6 +26,7 @@ declare global {
 const loadTurnstileScript = (): Promise<void> => {
     return new Promise((resolve, reject) => {
         if (window.turnstile) {
+            window.turnstile.reset();
             resolve();
             return;
         }
@@ -47,7 +48,6 @@ const loadTurnstileScript = (): Promise<void> => {
             // Wait for Turnstile to be fully available
             const checkTurnstile = () => {
                 if (window.turnstile && typeof window.turnstile.render === 'function') {
-                    clearTimeout(checkTurnstile);
                     resolve();
                 } else {
                     setTimeout(checkTurnstile, 50);
@@ -162,44 +162,28 @@ const handleMessageChange = (event: Event) => {
     validateField('message', target.value);
 };
 
-const loadTurnstileWidget = async () => {
-    try {
-        await loadTurnstileScript();
-        await nextTick(); // Ensure DOM is ready
 
-        if (window.turnstile && document.getElementById('turnstile-container')) {
-            const container = document.getElementById('turnstile-container');
-            if (container) {
-            // Clear the container first
-            container.innerHTML = '';
-            turnstileWidgetId.value = window.turnstile?.render("#turnstile-container", {
-                sitekey: turnstileSitekey,
-                callback: function (token: string) {
-                    console.log("Turnstile challenge completed:", token);
-                    turnstileToken.value = token;
-                },
-                'error-callback': function (error: string) {
-                    console.warning("Turnstile error:", error);
-                    turnstileToken.value = '';
-                },
-                'expired-callback': function () {
-                    console.log("Turnstile token expired");
-                    turnstileToken.value = '';
-                },
-                'timeout-callback': function () {
-                    console.log("Turnstile challenge timed out");
-                    turnstileToken.value = '';
-                }
-            });
+function onLoadTurnstile() {
+    turnstileWidgetId.value = window.turnstile.render("#turnstile-container", {
+        sitekey: turnstileSitekey,
+        callback: function (token: string) {
+            console.log("Turnstile challenge completed:", token);
+            turnstileToken.value = token;
+        },
+        'error-callback': function (error: string) {
+            console.warn("Turnstile error:", error);
+            turnstileToken.value = '';
+        },
+        'expired-callback': function () {
+            console.log("Turnstile token expired");
+            turnstileToken.value = '';
+        },
+        'timeout-callback': function () {
+            console.log("Turnstile challenge timed out");
+            turnstileToken.value = '';
         }
-        } else {
-            console.warn('Turnstile container not found or Turnstile not loaded');
-        }
-    } catch (error) {
-        console.warning('Failed to load Turnstile:', error);
-        errors.value.turnstile = 'Failed to load security verification. Please refresh the page.';
-    }
-};
+    });
+}
 
 onMounted(() => {
     resetForm();
@@ -215,14 +199,22 @@ onUnmounted(() => {
     }
 });
 
-const resetForm = () => {
+const resetForm = async () => {
     form.value = { email: '', subject: '', message: '' };
     errors.value = {};
     validationErrors.value = {};
     successMessage.value = '';
     turnstileToken.value = '';
     isFormValid.value = false;
-    loadTurnstileWidget();
+    isFormSubmitted.value = false;
+
+    try {
+        await loadTurnstileScript();
+        onLoadTurnstile();
+    } catch (error) {
+        console.warn('Failed to load Turnstile:', error);
+        errors.value.turnstile = 'Failed to load security verification. Please refresh the page.';
+    }
 };
 
 const submitForm = async () => {
@@ -273,7 +265,7 @@ const submitForm = async () => {
         successMessage.value = data.message || 'Message sent successfully!';
         isFormSubmitted.value = true;
     } catch (error: any) {
-        console.warning('Error submitting form:', error);
+        console.warn('Error submitting form:', error);
         if (!errors.value || Object.keys(errors.value).length === 0) {
             errors.value.general = error?.message || 'Failed to send message. Please try again.';
         }
@@ -358,10 +350,10 @@ const submitForm = async () => {
                     <p v-if="errors.message" class="mt-1 text-sm error">{{ errors.message[0] }}</p>
                     <p v-if="validationErrors.message" class="mt-1 text-sm text-red-600">{{ validationErrors.message }}</p>
                 </div>
-            </div>
 
-            <div v-if="!isFormSubmitted" class="flex justify-center">
-                <div id="turnstile-container"></div>
+                <div class="flex justify-center">
+                    <div id="turnstile-container"></div>
+                </div>
             </div>
         </div>
     </Modal>
