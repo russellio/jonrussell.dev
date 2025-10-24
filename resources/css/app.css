@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @import '@fontsource/space-mono';
 @import '@fontsource/sixtyfour';
 
@@ -216,7 +216,7 @@ p {
 }
 
 .modal-header h1 span {
-    @apply font-sixtyfour text-2xl font-normal text-secondary align-top;
+    @apply font-sixtyfour text-2xl font-normal text-secondary;
 }
 
 .modal-content {

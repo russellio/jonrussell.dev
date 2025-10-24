@@ -265,7 +265,7 @@ const submitForm = async () => {
                     <textarea
                         id="message"
                         :value="form.message"
-                        @input="handleMessageChange"
+                        @change="handleMessageChange"
                         placeholder="Your message here..."
                         rows="4"
                         :class="{

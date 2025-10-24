@@ -27,7 +27,7 @@ class ContactController extends Controller
         }
 
         try {
-            Mail::to('jonrussell321@gmail.com')
+            Mail::to('info@jonrussell.dev')
                 ->send(new ContactFormMail(
                     $request->email,
                     $request->subject,
