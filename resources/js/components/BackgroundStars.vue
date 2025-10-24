@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue';
 
 // Define emits for parent communication
 const emit = defineEmits<{
-    'background-ready': []
+    'background-ready': [];
 }>();
 
 const starsContainer = ref<HTMLElement>();
@@ -11,20 +11,13 @@ const starsCrossContainer = ref<HTMLElement>();
 const starsCrossAuxContainer = ref<HTMLElement>();
 
 // Color palette for night sky
-const nightSky = ["#280F36", "#632B6C", "#BE6590", "#FFC1A0", "#FE9C7F"];
+const nightSky = ['#280F36', '#632B6C', '#BE6590', '#FFC1A0', '#FE9C7F'];
 
 function getRandomInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function createStarElement(
-    starClass: string,
-    top: number,
-    left: number,
-    duration: number,
-    color?: string,
-    shadow?: string
-): HTMLElement {
+function createStarElement(starClass: string, top: number, left: number, duration: number, color?: string, shadow?: string): HTMLElement {
     const star = document.createElement('div');
     star.className = `star ${starClass}`;
 
@@ -49,27 +42,14 @@ function createBlurElement(top: number, left: number, color: string): HTMLElemen
     return blur;
 }
 
-function createStarWithPercentage(
-    starClass: string,
-    top: number,
-    left: number,
-    duration: number,
-    color: string,
-    shadow: string
-): HTMLElement {
+function createStarWithPercentage(starClass: string, top: number, left: number, duration: number, color: string, shadow: string): HTMLElement {
     const star = document.createElement('div');
     star.className = `star ${starClass}`;
     star.style.cssText = `top:${top}%;left:${left}%;animation-duration:${duration}s;background-color:${color};box-shadow:0px 0 6px 1px ${shadow};`;
     return star;
 }
 
-function createStar2WithPercentage(
-    top: number,
-    left: number,
-    duration: number,
-    color: string,
-    shadow: string
-): HTMLElement {
+function createStar2WithPercentage(top: number, left: number, duration: number, color: string, shadow: string): HTMLElement {
     const star = document.createElement('div');
     star.className = 'star star-2';
     star.style.cssText = `top:${top}%;left:${left}%;animation-duration:${duration}s;background-color:${color};box-shadow:0px 0 10px 1px ${shadow};opacity:0.7`;
@@ -88,32 +68,20 @@ function generateStars() {
 
     // Generate basic stars in batches to avoid blocking
     for (let i = 0; i < 250; i++) {
-        starsFragment.appendChild(
-            createStarElement('star-0', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(1, 2))
-        );
-        starsFragment.appendChild(
-            createStarElement('star-1 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(2, 5))
-        );
-        starsFragment.appendChild(
-            createStarElement('star-2 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(1, 4))
-        );
-        starsFragment.appendChild(
-            createStarElement('star-3 blink', getRandomInt(0, 70), getRandomInt(0, 100), getRandomInt(5, 7))
-        );
+        starsFragment.appendChild(createStarElement('star-0', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(1, 2)));
+        starsFragment.appendChild(createStarElement('star-1 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(2, 5)));
+        starsFragment.appendChild(createStarElement('star-2 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(1, 4)));
+        starsFragment.appendChild(createStarElement('star-3 blink', getRandomInt(0, 70), getRandomInt(0, 100), getRandomInt(5, 7)));
     }
 
     // Generate cross stars
     for (let i = 0; i < 150; i++) {
-        starsFragment.appendChild(
-            createStarElement('star-4 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(5, 7))
-        );
+        starsFragment.appendChild(createStarElement('star-4 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(5, 7)));
 
         const color = nightSky[Math.ceil(getRandomInt(0, nightSky.length - 1))];
+        crossFragment.appendChild(createBlurElement(getRandomInt(0, 100), getRandomInt(0, 100), color));
         crossFragment.appendChild(
-            createBlurElement(getRandomInt(0, 100), getRandomInt(0, 100), color)
-        );
-        crossFragment.appendChild(
-            createStarWithPercentage('star-1 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(6, 12), color, color)
+            createStarWithPercentage('star-1 blink', getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(6, 12), color, color),
         );
     }
 
@@ -121,18 +89,12 @@ function generateStars() {
     for (let i = 0; i < 50; i++) {
         if (i % 2 === 0) {
             const color = nightSky[Math.ceil(getRandomInt(0, nightSky.length - 1))];
-            starsFragment.appendChild(
-                createStarElement('star-5', getRandomInt(0, 50), getRandomInt(0, 100), getRandomInt(5, 7), color)
-            );
+            starsFragment.appendChild(createStarElement('star-5', getRandomInt(0, 50), getRandomInt(0, 100), getRandomInt(5, 7), color));
         }
 
         const color = nightSky[Math.ceil(getRandomInt(0, nightSky.length - 1))];
-        auxFragment.appendChild(
-            createBlurElement(getRandomInt(0, 100), getRandomInt(0, 100), color)
-        );
-        auxFragment.appendChild(
-            createStar2WithPercentage(getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(4, 10), color, color)
-        );
+        auxFragment.appendChild(createBlurElement(getRandomInt(0, 100), getRandomInt(0, 100), color));
+        auxFragment.appendChild(createStar2WithPercentage(getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(4, 10), color, color));
     }
 
     // Append all fragments at once for better performance
@@ -155,14 +117,14 @@ onMounted(() => {
 <template>
     <div class="sky">
         <div class="mountains">
-<!--            <div class="mountain-1"></div>-->
-<!--            <div class="mountain-2"></div>-->
+            <!--            <div class="mountain-1"></div>-->
+            <!--            <div class="mountain-2"></div>-->
             <div class="land-1"></div>
             <div class="land-2"></div>
             <div class="land-3"></div>
         </div>
         <div class="sky-base"></div>
-<!--        <div class="light-base"></div>-->
+        <!--        <div class="light-base"></div>-->
         <div class="stars" ref="starsContainer"></div>
         <div class="stars-cross" ref="starsCrossContainer"></div>
         <div class="stars-cross-aux" ref="starsCrossAuxContainer"></div>
@@ -173,13 +135,11 @@ onMounted(() => {
 @reference "@/css/app.css";
 
 .sky {
-    @apply fixed w-full h-full overflow-hidden;
+    @apply fixed h-full w-full overflow-hidden;
     z-index: -1;
     background:
-        radial-gradient(at 51% 46%, #041028 0, transparent 50%),
-        radial-gradient(at 85% 99%, #330509 0, transparent 50%),
-        radial-gradient(at 18% 22%, #111b4f 0, transparent 50%),
-        #041028;
+        radial-gradient(at 51% 46%, #041028 0, transparent 50%), radial-gradient(at 85% 99%, #330509 0, transparent 50%),
+        radial-gradient(at 18% 22%, #111b4f 0, transparent 50%), #041028;
     transform: scale(1);
 }
 
@@ -199,19 +159,18 @@ onMounted(() => {
     width: 80vw;
     height: 100px;
     border-radius: 50%;
-    box-shadow: -0px -10px 30px 10px #ffc1a0, -0px -20px 40px 20px #fe9c7f,
-    -0px -30px 60px 30px #be6590, -0px -50px 150px 75px #632b6c;
+    box-shadow:
+        -0px -10px 30px 10px #ffc1a0,
+        -0px -20px 40px 20px #fe9c7f,
+        -0px -30px 60px 30px #be6590,
+        -0px -50px 150px 75px #632b6c;
     background-color: #ffc1a0;
     z-index: 1;
 }
 
 .sky-base {
-    content: "";
-    background: linear-gradient(
-        to bottom,
-        rgba(55, 5, 105, 0) 0%,
-        rgba(9, 0, 22, 1) 100%
-    );
+    content: '';
+    background: linear-gradient(to bottom, rgba(55, 5, 105, 0) 0%, rgba(9, 0, 22, 1) 100%);
     width: 100%;
     height: 100px;
     position: absolute;
@@ -219,12 +178,12 @@ onMounted(() => {
     z-index: 3;
 }
 
-.mountains > [class^="mountain"],
-.mountains > [class^="mountain"]:after,
-.mountains > [class^="mountain"]:before,
-.mountains > [class^="land"],
-.mountains > [class^="land"]:after,
-.mountains > [class^="land"]:before {
+.mountains > [class^='mountain'],
+.mountains > [class^='mountain']:after,
+.mountains > [class^='mountain']:before,
+.mountains > [class^='land'],
+.mountains > [class^='land']:after,
+.mountains > [class^='land']:before {
     background: #110124;
     box-shadow: 0 0 50px 5px rgba(255, 255, 255, 0.2);
     position: absolute;
@@ -319,13 +278,13 @@ onMounted(() => {
 .star-4 {
     height: 2.5px;
     width: 2.5px;
-    box-shadow: 0 0 6px 1px rgba(255,255,255,0.5);
+    box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.5);
 }
 
 .star-5 {
     height: 2.5px;
     width: 2.5px;
-    box-shadow: 0 0 6px 1px rgba(255,255,255,0.7);
+    box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.7);
 }
 
 .stars-cross {

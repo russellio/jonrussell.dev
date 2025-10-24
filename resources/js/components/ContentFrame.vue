@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
     <div class="content-wrapper">
@@ -28,8 +26,9 @@
     @apply relative mx-auto w-9/10 rounded-xl bg-content pt-12 pb-16;
 }
 
-.content-top, .content-bottom {
-    @apply absolute left-0 overflow-hidden rounded-b-xl w-full;
+.content-top,
+.content-bottom {
+    @apply absolute left-0 w-full overflow-hidden rounded-b-xl;
     line-height: 0;
     border-bottom: 3px ridge var(--color-secondary);
 

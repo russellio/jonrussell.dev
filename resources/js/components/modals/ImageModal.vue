@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import '../../../css/modal.css';
-import { ref } from 'vue';
 import type { Image } from '@/js/types';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { ref } from 'vue';
 library.add(faXmark);
 
 const isImageModalOpen = ref(false);
@@ -22,7 +21,7 @@ const closeImageModal = () => {
 
 defineExpose({
     openImageModal,
-    closeImageModal
+    closeImageModal,
 });
 </script>
 
@@ -32,27 +31,43 @@ defineExpose({
             <button @click="closeImageModal()" aria-label="Close">
                 <FontAwesomeIcon icon="fa-outline fa-xmark" class="h-4 w-4" />
             </button>
-            <img v-if="currentImage?.src"
-                 :src="`/images/projects/${currentImage.src}`"
-                 :title="currentImage.title"
-                 :alt="currentImage.alt"
-            />
+            <img v-if="currentImage?.src" :src="`/images/projects/${currentImage.src}`" :title="currentImage.title" :alt="currentImage.alt" />
         </div>
     </div>
 </template>
 
 <style scoped>
-@reference "@/css/app.css";
-
 .image-modal-wrapper {
-    @apply fixed inset-0 bg-black/75 items-center justify-center p-4 z-50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 1rem;
+}
 
-    .image-modal {
-        @apply relative bg-white p-2 rounded-lg max-w-3xl max-h-full;
-    }
+.image-modal-wrapper.hidden {
+    display: none !important;
+    pointer-events: none;
+}
 
-    button {
-        @apply absolute top-1 right-1;
-    }
+.image-modal {
+    position: relative;
+    max-height: 100%;
+    max-width: 48rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    padding: 0.5rem;
+}
+
+.image-modal-wrapper button {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
 }
 </style>

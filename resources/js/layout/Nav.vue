@@ -2,87 +2,80 @@
 import { ref } from 'vue';
 
 const navigation = [
-  {
-    name: "About",
-    route: "/about"
-  },
-  {
-    name: "Projects",
-    route: "/projects"
-  },
-  {
-    name: "Contact",
-    route: "/contact"
-  }
-]
+    {
+        name: 'About',
+        route: '/about',
+    },
+    {
+        name: 'Projects',
+        route: '/projects',
+    },
+    {
+        name: 'Contact',
+        route: '/contact',
+    },
+];
 
 const scrollToSection = (route: string) => {
-  // Implementation for scrolling to section
-  console.log('Scrolling to:', route)
-}
+    // Implementation for scrolling to section
+    console.log('Scrolling to:', route);
+};
 
 const mobileMenuOpen = ref(false);
-
 </script>
 
 <template>
-  <!-- Navigation -->
-  <nav class="overflow-visible">
-    <div class="section-wrapper sticky top-0">
-      <div class="flex items-center justify-center mt-2">
+    <!-- Navigation -->
+    <nav class="overflow-visible">
+        <div class="section-wrapper sticky top-0">
+            <div class="mt-2 flex items-center justify-center">
+                <div class="hidden md:block">
+                    <button v-for="item in navigation" :key="item.name" @click="scrollToSection(item.route)" class="primary-btn">
+                        {{ item.name }}
+                    </button>
+                </div>
 
-        <div class="hidden md:block">
-          <button
-            v-for="item in navigation"
-            :key="item.name"
-            @click="scrollToSection(item.route)"
-            class="primary-btn"
-          >
-            {{ item.name }}
-          </button>
-        </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <button
+                            v-for="item in navigation"
+                            :key="item.name"
+                            @click="scrollToSection(item.route)"
+                            class="hover:text-primary-600 rounded-md px-3 py-2 text-sm font-medium text-gray-600 transition-colors duration-200"
+                        >
+                            {{ item.name }}
+                        </button>
+                    </div>
+                </div>
 
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-              <button
-                v-for="item in navigation"
-                :key="item.name"
-                @click="scrollToSection(item.route)"
-                class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-              >
-                {{ item.name }}
-              </button>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="hover:text-primary-600 p-2 text-gray-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-          </div>
 
-        <!-- Mobile menu button -->
-          <div class="md:hidden">
-            <button
-              @click="mobileMenuOpen = !mobileMenuOpen"
-              class="text-gray-600 hover:text-primary-600 p-2"
-            >
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-      </div>
-
-      <!-- Mobile menu -->
-      <div v-if="mobileMenuOpen" class="md:hidden">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <button
-            v-for="item in navigation"
-            :key="item.name"
-            @click="scrollToSection(item.route); mobileMenuOpen = false"
-            class="text-gray-600 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium"
-          >
-            {{ item.name }}
-          </button>
+            <!-- Mobile menu -->
+            <div v-if="mobileMenuOpen" class="md:hidden">
+                <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+                    <button
+                        v-for="item in navigation"
+                        :key="item.name"
+                        @click="
+                            scrollToSection(item.route);
+                            mobileMenuOpen = false;
+                        "
+                        class="hover:text-primary-600 block rounded-md px-3 py-2 text-base font-medium text-gray-600"
+                    >
+                        {{ item.name }}
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </nav>
+    </nav>
 </template>
 
 <style scoped>
@@ -93,8 +86,8 @@ const mobileMenuOpen = ref(false);
 }*/
 
 button {
-    @apply relative w-40 h-12 uppercase bg-transparent text-white font-bold cursor-pointer rounded-xl;
-/*    width: 10em;
+    @apply relative h-12 w-40 cursor-pointer rounded-xl bg-transparent font-bold text-white uppercase;
+    /*    width: 10em;
     height: 3.5em;*/
     border: 3px ridge var(--color-primary);
     outline: none;
@@ -105,7 +98,7 @@ button {
 
 button::after {
     @apply absolute bg-dark-blue;
-    content: "";
+    content: '';
     top: -10px;
     left: 3%;
     width: 94%;
@@ -116,7 +109,7 @@ button::after {
 
 button::before {
     @apply absolute bg-dark-blue;
-    content: "";
+    content: '';
     transform-origin: center;
     top: 98%;
     left: 3%;
@@ -125,12 +118,12 @@ button::before {
     transition: 0.5s;
 }
 
-button:hover::before, button:hover::after {
-    transform: scale(0)
+button:hover::before,
+button:hover::after {
+    transform: scale(0);
 }
 
 button:hover {
-    box-shadow: inset 0 0 25px #1479EA;
+    box-shadow: inset 0 0 25px #1479ea;
 }
-
 </style>

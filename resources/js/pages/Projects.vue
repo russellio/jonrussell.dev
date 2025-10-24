@@ -2,13 +2,12 @@
 import App from '@/js/App.vue';
 import ProjectModal from '@/js/components/modals/ProjectModal.vue';
 import { useModal } from '@/js/composables/useModal';
-import { computed, ref } from 'vue';
 import projectData from '@/js/data/projects.json';
+import { computed, ref } from 'vue';
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { faAward } from '@fortawesome/free-solid-svg-icons';
+import { faAward, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 library.add(faXmark, faAward);
 
@@ -29,31 +28,30 @@ const openProjectModal = (project: any) => {
     <App>
         <section>
             <!-- Page Header -->
-            <div class="mb-16 mt-10 text-center">
+            <div class="mt-10 mb-16 text-center">
                 <h2>Projects</h2>
-                <p class="text-xl text-terminal-black-500">A collection of projects I've worked on.</p>
+                <p class="text-2xl text-terminal-black-500">A collection of projects I've worked on.</p>
             </div>
 
             <!-- Projects Grid -->
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 w-full">
+            <div class="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
                 <div v-for="(project, index) in projects" :key="index" class="card">
-
                     <a aria-label="View project details" class="cursor-pointer">
                         <div class="group project" @click="openProjectModal(project)">
-                            <img :src="`/images/projects/${project.bgImage}`"
-                                 alt="Project Image"
-                                 :title="`Project: ${project.title}`"
-                                 class="project-image"
-                                 :style="`object-position: ${project.bgPositionX} ${project.bgPositionY}`"
+                            <img
+                                :src="`/images/projects/${project.bgImage}`"
+                                alt="Project Image"
+                                :title="`Project: ${project.title}`"
+                                class="project-image"
+                                :style="`object-position: ${project.bgPositionX} ${project.bgPositionY}`"
                             />
 
                             <div class="project-title-backdrop">
                                 <h1>{{ project.title }}</h1>
 
                                 <div v-if="project.awards" class="awards">
-                                    <div v-for="(award, index) in project.awards" :key="index"
-                                         class="pill">
-                                        <span class="leading-none my-1 mx-2.5">
+                                    <div v-for="(award, index) in project.awards" :key="index" class="pill">
+                                        <span class="mx-2.5 my-1 leading-none">
                                             <FontAwesomeIcon icon="fa-solid fa-award" class="text-gold" />
                                             {{ award }}
                                         </span>
@@ -67,16 +65,14 @@ const openProjectModal = (project: any) => {
                                 <!-- Technologies -->
                                 <div v-if="project.technologies" class="mt-2 mb-4 flex flex-wrap gap-2">
                                     <div v-for="(tech, index) in project.technologies" :key="index" class="pill">
-                                        <span class="leading-none my-1 mx-2.5">{{ tech }}</span>
+                                        <span class="mx-2.5 my-1 leading-none">{{ tech }}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </a>
-
                 </div>
             </div>
-
         </section>
 
         <!-- Single Project Modal -->
@@ -90,50 +86,49 @@ const openProjectModal = (project: any) => {
 <style scoped>
 @reference "@/css/app.css";
 
-
-
 .project {
-    @apply overflow-hidden rounded-lg border-1 border-terminal-black-700 z-0 h-[260px] relative align-bottom;
+    @apply relative z-0 h-[260px] overflow-hidden rounded-lg border-1 border-terminal-black-700 align-bottom;
 }
 
 .project-image {
     @apply absolute opacity-40 transition-opacity duration-300 group-hover:opacity-100;
-    @apply object-none z-10 bg-terminal-black;
+    @apply z-10 bg-terminal-black object-none;
     object-position: -30px -130px;
     /*@apply saturate-100 transition-[saturate] duration-300 ease-in-out group-hover:saturate-0;*/
-    @apply blur-[1px] transition-[blur] duration-300 ease-in-out group-hover:blur-none;
+    @apply  transition-[blur] duration-300 ease-in-out group-hover:blur-[1px];
     /*@apply grayscale-0 transition-[grayscale] duration-300 ease-in-out group-hover:grayscale-100;*/
 }
 
 .project-info-wrapper {
-    @apply absolute bottom-0 z-50 text-white px-4 pt-2 bg-terminal-black w-full border-t-1 border-terminal-black-300;
+    @apply absolute bottom-0 z-50 w-full border-t-1 border-terminal-black-300 bg-terminal-black px-4 pt-2 text-white;
     @apply bg-gradient-to-t from-black via-terminal-black to-transparent md:opacity-0 md:transition-opacity md:duration-300 md:ease-in-out md:group-hover:opacity-100;
-    @apply sm:max-md:opacity-100;
+    @apply max-md:opacity-100;
 }
 
 .project-title-backdrop {
-    @apply absolute w-[98%] rounded-md p-0.5 z-20 m-1 md:mt-15;
-    @apply border-1 border-terminal-black-700 border-s-0 border-t-0;
+    @apply absolute z-20 m-1 w-[98%] rounded-md p-0.5 md:mt-15;
+    @apply border-1 border-s-0 border-t-0 border-terminal-black-700;
     @apply md:transition-all md:duration-300 md:ease-in-out md:group-hover:mt-5 md:group-hover:border-transparent;
     @apply sm:max-md:mt-2;
+}
 
-    h1 {
-        @apply p-1 ps-8 backdrop-blur-sm border-1 border-blue-100 rounded-md;
-        @apply backdrop-filter bg-white/5 md:transition-[bg-white] md:duration-300 md:ease-in md:group-hover:bg-white/45;
-        @apply sm:max-md:bg-white/45;
-    }
+h1 {
+    @apply text-2xl lg:text-3xl font-extrabold text-secondary;
+    @apply rounded-md border-1 border-blue-100 p-1 ps-8 backdrop-blur-sm;
+    @apply bg-white/5 backdrop-filter md:transition-[bg-white] md:duration-300 md:ease-in md:group-hover:bg-white/45;
+    @apply sm:max-md:bg-white/45;
+}
 
-    div.awards {
-        @apply absolute mt-2 pe-2 grid grid-cols-1 justify-items-end w-full opacity-90;
+div.awards {
+    @apply absolute mt-2 grid w-full grid-cols-1 justify-items-end pe-2 opacity-90;
+}
 
-        .pill {
-            @apply bg-dark-blue font-bold w-max border-1 border-white text-white;
-        }
-    }
+div.awards .pill {
+    @apply w-max border-1 border-white bg-dark-blue font-bold text-white;
 }
 
 .pill {
     @apply inline-flex w-max items-center border-1 border-terminal-black-300 select-none;
-    @apply rounded-full text-xs p-0.5 shadow-sm;
+    @apply rounded-full p-0.5 text-xs shadow-sm;
 }
 </style>

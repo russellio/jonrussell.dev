@@ -87,8 +87,8 @@
     position: absolute;
     height: 80px;
     width: 100%;
-    bottom: 0px;
-    left: 0px;
+    bottom: 0;
+    left: 0;
     z-index: 2;
 }
 
@@ -99,30 +99,21 @@
     width: 80vw;
     height: 100px;
     border-radius: 50%;
-    box-shadow: -0px -10px 30px 10px #ffc1a0, -0px -20px 40px 20px #fe9c7f,
-    -0px -30px 60px 30px #be6590, -0px -50px 150px 75px #632b6c;
+    box-shadow:
+        0 -10px 30px 10px #ffc1a0,
+        0 -20px 40px 20px #fe9c7f,
+        0 -30px 60px 30px #be6590,
+        0 -50px 150px 75px #632b6c;
     background-color: #ffc1a0;
     z-index: 1;
 }
 
 .mountains-base {
-    content: "";
+    content: '';
 
-    background: -moz-linear-gradient(
-        top,
-        rgba(55, 5, 105, 0) 0%,
-        rgba(9, 0, 22, 1) 100%
-    );
-    background: -webkit-linear-gradient(
-        top,
-        rgba(55, 5, 105, 0) 0%,
-        rgba(9, 0, 22, 1) 100%
-    );
-    background: linear-gradient(
-        to bottom,
-        rgba(55, 5, 105, 0) 0%,
-        rgba(9, 0, 22, 1) 100%
-    );
+    background: -moz-linear-gradient(top, rgba(55, 5, 105, 0) 0%, rgba(9, 0, 22, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(55, 5, 105, 0) 0%, rgba(9, 0, 22, 1) 100%);
+    background: linear-gradient(to bottom, rgba(55, 5, 105, 0) 0%, rgba(9, 0, 22, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(
         startColorstr="#00370569",
         endColorstr="#090016",
@@ -137,23 +128,11 @@
 }
 
 .mountains-base:after {
-    content: "";
+    content: '';
 
-    background: -moz-linear-gradient(
-        top,
-        rgba(55, 5, 105, 0) 0%,
-        rgba(9, 0, 22, 1) 100%
-    );
-    background: -webkit-linear-gradient(
-        top,
-        rgba(55, 5, 105, 0) 0%,
-        rgba(9, 0, 22, 1) 100%
-    );
-    background: linear-gradient(
-        to bottom,
-        rgba(55, 5, 105, 0) 0%,
-        rgba(9, 0, 22, 1) 100%
-    );
+    background: -moz-linear-gradient(top, rgba(55, 5, 105, 0) 0%, rgba(9, 0, 22, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(55, 5, 105, 0) 0%, rgba(9, 0, 22, 1) 100%);
+    background: linear-gradient(to bottom, rgba(55, 5, 105, 0) 0%, rgba(9, 0, 22, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(
         startColorstr="#00370569",
         endColorstr="#090016",
@@ -162,28 +141,16 @@
     width: 100%;
     height: 20px;
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     z-index: 3;
 }
 
 .mountains-base:before {
-    content: "";
+    content: '';
 
-    background: -moz-linear-gradient(
-        top,
-        rgba(55, 5, 105, 0) 0%,
-        rgba(9, 0, 22, 1) 100%
-    );
-    background: -webkit-linear-gradient(
-        top,
-        rgba(55, 5, 105, 0) 0%,
-        rgba(9, 0, 22, 1) 100%
-    );
-    background: linear-gradient(
-        to bottom,
-        rgba(55, 5, 105, 0) 0%,
-        rgba(9, 0, 22, 1) 100%
-    );
+    background: -moz-linear-gradient(top, rgba(55, 5, 105, 0) 0%, rgba(9, 0, 22, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(55, 5, 105, 0) 0%, rgba(9, 0, 22, 1) 100%);
+    background: linear-gradient(to bottom, rgba(55, 5, 105, 0) 0%, rgba(9, 0, 22, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(
         startColorstr="#00370569",
         endColorstr="#090016",
@@ -196,16 +163,16 @@
     z-index: 2;
 }
 
-.mountains > [class^="mountain"],
-.mountains > [class^="mountain"]:after,
-.mountains > [class^="mountain"]:before,
-.mountains > [class^="land"],
-.mountains > [class^="land"]:after,
-.mountains > [class^="land"]:before {
+.mountains > [class^='mountain'],
+.mountains > [class^='mountain']:after,
+.mountains > [class^='mountain']:before,
+.mountains > [class^='land'],
+.mountains > [class^='land']:after,
+.mountains > [class^='land']:before {
     background: #110124;
-    box-shadow: 0px 0px 50px 5px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 50px 5px rgba(255, 255, 255, 0.2);
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
 }
 
 .mountain-2 {
@@ -249,8 +216,8 @@
 
 .stars {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     transition: all 10s linear;
@@ -296,19 +263,19 @@
 .star-4 {
     height: 2.5px;
     width: 2.5px;
-    box-shadow: 0px 0px 6px 1px rgba(255,255,255,0.5);
+    box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.5);
 }
 
 .star-5 {
     height: 2.5px;
     width: 2.5px;
-    box-shadow: 0px 0px 6px 1px rgba(255,255,255,0.7);
+    box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.7);
 }
 
 .stars-cross {
     position: absolute;
     top: 10vh;
-    left: 0px;
+    left: 0;
     width: 120vw;
     height: 20vh;
     transform: rotate(20deg);
@@ -317,7 +284,7 @@
 
 .stars-cross-aux {
     position: absolute;
-    top: 0vh;
+    top: 0;
     left: 10vw;
     width: 120vw;
     height: 10vh;

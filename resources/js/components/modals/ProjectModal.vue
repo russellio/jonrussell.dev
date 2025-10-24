@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import ImageModal from '@/js/components/modals/ImageModal.vue';
 import Modal from '@/js/components/Modal.vue';
+import ImageModal from '@/js/components/modals/ImageModal.vue';
 import { ref } from 'vue';
-import '../../../css/modal.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowUpRightFromSquare, faAward, faCaretRight } from '@fortawesome/free-solid-svg-icons';
@@ -31,7 +30,7 @@ const hasModalRight = (project: any) => {
     return projectHasProp(project, 'skills') || projectHasProp(project, 'technologies') || projectHasProp(project, 'tools');
 };
 
-const title = `project: <span>${props.project.title}</span>`;
+const title = `<span>project: </span>${props.project.title}`;
 </script>
 
 <template>
@@ -49,19 +48,19 @@ const title = `project: <span>${props.project.title}</span>`;
 
         <div class="modal-center">
             <div v-if="projectHasProp(project, 'company')" class="company">
-                <h3>
-                    company: <span>{{ project.company }}</span>
+                <h3 class="mt-3 font-space-mono text-lg font-bold">
+                    company: <span class="font-space-mono font-normal">{{ project.company }}</span>
                 </h3>
             </div>
 
             <div v-if="projectHasProp(project, 'description')" class="description">
-                <h3>description:</h3>
-                <div v-html="project.description" />
+                <h3 class="mt-3 font-space-mono text-lg font-bold">description:</h3>
+                <div v-html="project.description" class="" />
             </div>
 
             <div v-if="projectHasProp(project, 'links')" class="links">
-                <h3>links:</h3>
-                <ul class="fa-ul">
+                <h3 class="mt-3 font-space-mono text-lg font-bold">links:</h3>
+                <ul class="fa-ul" style="list-style-type: disc;">
                     <li v-for="(link, index) in project.links" :key="index">
                         <a :href="link.url" target="_blank">{{ link.title }}</a>
                         <FontAwesomeIcon :icon="faArrowUpRightFromSquare" class="ps-2 text-gold" size="sm" />
@@ -72,7 +71,7 @@ const title = `project: <span>${props.project.title}</span>`;
 
         <div v-if="hasModalRight(project)" class="modal-right">
             <div v-if="projectHasProp(project, 'skills')" class="skills">
-                <h3>skills:</h3>
+                <h3 class="mt-3 font-space-mono text-lg font-bold">skills:</h3>
                 <ul class="fa-ul">
                     <li v-for="(skill, index) in project.skills" :key="index">
                         <span class="fa-li"><FontAwesomeIcon icon="fa-solid fa-caret-right" class="text-gold" /></span>
@@ -82,7 +81,7 @@ const title = `project: <span>${props.project.title}</span>`;
             </div>
 
             <div v-if="projectHasProp(project, 'technologies')" class="technologies">
-                <h3>tech:</h3>
+                <h3 class="mt-3 font-space-mono text-lg font-bold">tech:</h3>
                 <ul class="fa-ul">
                     <li v-for="(tech, index) in project.technologies" :key="index">
                         <span class="fa-li"><FontAwesomeIcon icon="fa-solid fa-caret-right" class="text-gold" /></span>
@@ -92,7 +91,7 @@ const title = `project: <span>${props.project.title}</span>`;
             </div>
 
             <div v-if="projectHasProp(project, 'tools')" class="tools">
-                <h3>tools:</h3>
+                <h3 class="mt-3 font-space-mono text-lg font-bold">tools:</h3>
                 <ul class="fa-ul">
                     <li v-for="(tool, index) in project.tools" :key="index">
                         <span class="fa-li"><FontAwesomeIcon :icon="faCaretRight" class="text-gold" /></span>
@@ -107,27 +106,22 @@ const title = `project: <span>${props.project.title}</span>`;
 </template>
 
 <style scoped>
-@reference "@/css/app.css";
-
-h3 {
-    @apply mt-2 font-space-mono text-sm font-bold;
-}
-
-.primary-image {
-    img {
-        @apply w-full object-fill;
-    }
-}
-
-.description {
-    @apply text-sm;
+.primary-image img {
+    width: 100%;
+    object-fit: fill;
 }
 
 .thumbnails {
-    @apply grid grid-cols-2 gap-1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.25rem;
+}
 
-    .thumbnail {
-        @apply mt-1 max-h-[80px] max-w-[80px] cursor-pointer overflow-hidden;
-    }
+.thumbnail {
+    margin-top: 0.25rem;
+    max-height: 80px;
+    max-width: 80px;
+    cursor: pointer;
+    overflow: hidden;
 }
 </style>

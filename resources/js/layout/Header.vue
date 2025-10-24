@@ -37,7 +37,7 @@ onMounted(() => {
     <div class="fallback-background" :class="{ 'fade-out': showBackground }"></div>
 
     <Transition name="background-fade" appear>
-        <BackgroundStars v-if="showBackground" ref="stars" @background-ready="handleBackgroundReady" />
+        <BackgroundStars v-if="showBackground" ref="stars" @backgroundReady="handleBackgroundReady" />
     </Transition>
 
     <div class="intro-wrapper">
@@ -47,10 +47,8 @@ onMounted(() => {
                 <div class="welcome">
                     <h1>
                         <span class="welcome">Welcome!</span>
-                        <span class="clause-head" style="vertical-align:top;">I'm </span>
-<!--                        <span class="clause-head">.</span>-->
+                        <span class="clause-head">I'm</span>
                         <span class="name text-outline">Jon Russell</span>
-                        <span class="clause-head hidden md:inline">.</span>
                     </h1>
                     <p>
                         A <strong>full-stack software engineer</strong>
@@ -111,11 +109,11 @@ onMounted(() => {
 .intro {
     @apply mb-2 pt-20 pb-6 w-full;
     @apply flex flex-col md:flex-row;
-    @apply text-center md:text-start;
+    @apply text-center lg:text-start;
 }
 
 .intro-backdrop {
-    @apply absolute mt-12 h-[38%] w-full bg-white opacity-20 backdrop-blur-lg backdrop-filter;
+    @apply absolute mt-12 h-100 sm:h-1/2 w-full bg-white opacity-20 backdrop-blur-lg backdrop-filter;
     @apply md:h-full md:opacity-5;
 }
 
@@ -127,63 +125,73 @@ onMounted(() => {
 }
 
 div.welcome {
-    @apply w-full mt-40 max-w-7xl md:w-3/4 md:mx-auto;
-    @apply px-2 md:px-10;
+    @apply w-full mt-40 max-w-7xl lg:w-3/4 mx-auto;
+    @apply px-2 lg:px-10;
+}
 
-    h1 {
-        @apply sm:max-md:w-full absolute top-20 text-primary font-sixtyfour text-5xl;
-        @apply md:text-nowrap md:-indent-10 md:text-[4rem];
+h1 {
+    @apply absolute top-20 text-primary font-sixtyfour text-5xl md:text-6xl lg:text-7xl;
+    @apply w-full md:w-3/4 md:text-nowrap md:-indent-10;
+}
 
-        span.welcome {
-            @apply block md:text-7xl;
-        }
+.clause-head {
+    @apply text-white md:text-6xl lg:text-7xl align-top block md:inline pt-4 md:text-start;
+}
 
-        .clause-head {
-            @apply text-white md:text-6xl align-sub;
-        }
+.name {
+    @apply font-bold font-space-mono w-full md:w-auto lg:w-4/5 mx-auto align-text-bottom;
+    @apply uppercase text-center lg:text-start text-dark-blue text-nowrap tracking-tighter;
+    @apply block text-6xl md:text-7xl lg:text-8xl;
+}
 
-        .name {
-            @apply font-bold font-space-mono ps-2 sm:max-md:w-full;
-            @apply uppercase text-center md:text-start text-dark-blue text-nowrap tracking-tighter;
-            @apply block md:inline-block text-6xl md:text-7xl lg:text-8xl;
-        }
-    }
+span.welcome {
+    @apply block md:text-6xl lg:text-8xl;
 }
 
 p {
-    @apply ms-0 mt-10 mb-8 text-2xl text-terminal-black-50;
-    @apply md:w-2/3 md:mx-auto -indent-8;
+    @apply ms-4 md:ms-0 mt-10 md:mt-14 lg:mt-40 mb-8;
+    @apply w-full md:w-5/6 lg:w-[93%] md:mx-auto md:-indent-8;
+    @apply text-2xl text-terminal-black-50 text-left;
+    @apply md:leading-relaxed lg:text-3xl;
+}
 
-    strong {
-        @apply px-3 text-4xl font-bold tracking-tight text-white;
-    }
+strong {
+    @apply px-3 text-3xl lg:text-4xl font-bold lg:tracking-wider;
 }
 
 .profile-avatar-wrapper {
-    @apply flex w-11/12 flex-col justify-start rounded-full md:float-right md:h-50 md:w-46;
-    @apply items-center md:items-end md:me-4;
+    @apply flex flex-col justify-start rounded-full md:float-right;
+    @apply md:h-80 md:w-73;
+    @apply lg:h-90 lg:w-84;
+    @apply items-center lg:items-end;
 }
 
 .profile-avatar-backdrop {
-    @apply absolute z-30 ms-5 mt-30 h-70 w-76 rounded-sm border-2 border-secondary to-purple-100 md:me-5 md:mt-10 md:h-38 md:w-38;
+    @apply absolute z-30 w-74 h-70;
+    @apply md:w-52 md:h-50;
+    @apply lg:w-56 lg:h-60;
+    @apply ms-3 mt-24;
+    @apply md:me-4 md:mt-16;
+    @apply lg:me-2 lg:mt-18;
+    @apply rounded-sm border-2 border-secondary to-purple-100;
     @apply bg-white/20 backdrop-blur-sm backdrop-opacity-50 backdrop-saturate-100;
 }
 
 .profile-avatar {
-    @apply z-40 m-1 md:h-full w-76 md:w-full rounded-full object-cover md:mb-3;
+    @apply z-40 m-1 lg:me-0 w-76 md:h-full md:w-full lg:w-60 rounded-full object-cover md:mb-2;
 }
 
 .profile-pill {
     @apply w-max rounded-full border-1 border-white bg-blue font-bold;
-    @apply mt-1 mb-2 p-0.5 px-4 text-[18px] md:text-sm;
+    @apply my-2 p-1 px-4 text-[18px] md:text-sm;
 }
 
 .profile-icons {
-    @apply z-50 text-right;
+    @apply z-50 text-right pe-4;
+}
 
-    a svg {
-        @apply text-white;
-    }
+a svg {
+    @apply text-white p-1;
 }
 
 .profile-addon-wrapper {

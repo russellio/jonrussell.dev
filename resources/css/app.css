@@ -8,16 +8,13 @@
 @theme {
     --font-space-mono: 'Space Mono', monospace;
     --font-sixtyfour: 'Sixtyfour', monospace;
-
     --color-primary: var(--color-blue);
     --color-secondary: var(--color-burgundy-600);
     --color-success: var(--color-green-700);
     --color-error: var(--color-red);
-
     --color-blue: #1564f4;
     --color-dark-blue: var(--color-blue-950);
-    --color-content: var(--color-terminal-black-50);;
-
+    --color-content: var(--color-terminal-black-50);
     --color-blue-50: #e3e7ee;
     --color-blue-100: #c8d0dc;
     --color-blue-200: #adb9cb;
@@ -29,11 +26,9 @@
     --color-blue-800: #1d3867;
     --color-blue-900: #062456;
     --color-blue-950: #041028;
-
     --color-gold: #efbf04;
     --color-bright-green: #45f415;
     --color-red: #f50538;
-
     --color-burgundy: #ef4957;
     --color-burgundy-50: #fdf1f1;
     --color-burgundy-100: #fadfe0;
@@ -46,7 +41,6 @@
     --color-burgundy-800: #891b26;
     --color-burgundy-900: #4e0b12;
     --color-burgundy-950: #350509;
-
     --color-terminal-black: #2e2f30;
     --color-terminal-black-50: #f3f4f4;
     --color-terminal-black-100: #e7e8e9;
@@ -62,12 +56,11 @@
 }
 
 h1 {
-    @apply text-2xl text-primary font-space-mono;
+    @apply font-space-mono text-6xl text-primary;
 }
 
 h2 {
-    /*@apply text-4xl text-secondary uppercase text-center font-space-mono font-bold;*/
-    @apply text-5xl text-secondary uppercase text-center font-sixtyfour;
+    @apply text-center font-sixtyfour text-secondary uppercase text-3xl md:text-5xl;
 }
 
 html {
@@ -78,35 +71,24 @@ body {
     @apply bg-dark-blue;
 }
 
-.btn-primary {
-    @apply bg-secondary font-space-mono uppercase py-1 px-7 mx-4 rounded-md text-white font-bold;
-    @apply transition-[background-color] duration-200;
-}
+p {
+    @apply text-sm;
 
-.btn-primary:hover {
-    @apply bg-primary
-}
-
-.btn-secondary {
-    @apply bg-blue text-white rounded-md font-bold px-0.5 py-1 transition-[background-color] duration-200;
-}
-
-.btn-secondary:hover {
-    @apply bg-bright-green;
+    padding: 0.5rem 0;
 }
 
 .card {
-    @apply bg-white shadow-lg overflow-hidden rounded-md transition-shadow duration-300;
-
-    h1 {
-        @apply text-3xl font-extrabold text-secondary;
-        /*@apply bg-gradient-to-b from-blue-900 to-blue-400 bg-clip-text text-transparent; */
-        /*@apply drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]; */
-    }
+    @apply overflow-hidden rounded-md bg-white shadow-lg transition-shadow duration-300;
 }
+
+.card h1 {
+    @apply text-3xl font-extrabold text-secondary;
+}
+
 .card:hover {
     @apply shadow-2xl;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 50%);
     transform: translateY(-0.4rem);
 }
 
@@ -123,18 +105,50 @@ body {
         0 1px 1px var(--color-white);
 }
 
-.section-wrapper {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+.text-outline-dark {
+    text-shadow:
+        -1px 0 1px var(--color-terminal-black),
+        1px 0 1px var(--color-terminal-black),
+        0 0 1px var(--color-terminal-black),
+        -1px -1px 1px var(--color-terminal-black),
+        1px -1px 1px var(--color-terminal-black),
+        0 -1px 1px var(--color-terminal-black),
+        -1px 1px 1px var(--color-terminal-black),
+        1px 1px 1px var(--color-terminal-black),
+        0 1px 1px var(--color-terminal-black);
 }
 
-.success, .error {
-    @apply mt-1 mb-4 rounded-md w-11/12 mx-auto text-sm;
+.section-wrapper {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
 }
+
+.success,
+.error {
+    @apply mx-auto mt-1 mb-4 w-11/12 rounded-md text-sm;
+}
+
 .success {
     @apply bg-green-100 px-4 py-2 text-success;
 }
+
 .error {
     @apply bg-red-100 px-4 py-2 text-error;
+}
+
+.btn-primary {
+    @apply mx-4 rounded-md bg-secondary px-7 py-1 font-space-mono font-bold text-white uppercase transition-[background-color] duration-200;
+}
+
+.btn-primary:hover {
+    @apply bg-primary;
+}
+
+.btn-secondary {
+    @apply rounded-md bg-blue px-0.5 py-1 font-bold text-white transition-[background-color] duration-200;
+}
+
+.btn-secondary:hover {
+    @apply bg-bright-green;
 }
 
 /* button { */
@@ -183,3 +197,57 @@ body {
 /* button:hover { */
 /*    box-shadow: inset 0px 0px 25px #1479EA; */
 /* } */
+
+/* Modal styles */
+.modal-wrapper {
+    @apply fixed top-0 left-0 right-0 bottom-0 z-[9999] flex items-start justify-center overflow-y-auto bg-terminal-black/5 pt-30 backdrop-blur-sm;
+}
+
+.modal {
+    @apply relative mx-auto w-5/6 max-w-7xl rounded-xl bg-white border border-terminal-black-200 shadow-2xl shadow-terminal-black-950/5;
+}
+
+.modal-header {
+    @apply flex items-center justify-between p-4 pb-2;
+}
+
+.modal-header h1 {
+    @apply text-4xl font-extrabold text-primary align-top;
+}
+
+.modal-header h1 span {
+    @apply font-sixtyfour text-2xl font-normal text-secondary align-top;
+}
+
+.modal-content {
+    @apply flex w-full flex-col md:flex-row bg-terminal-black p-4 pt-2 text-white;
+}
+
+.modal-footer {
+    @apply flex justify-end gap-2 p-4;
+}
+
+.modal-center {
+    @apply mx-auto grid h-full w-4/5 grid-cols-1 gap-0 md:mb-10 md:w-2/3;
+}
+
+.modal-left {
+    @apply mx-auto me-4 grid h-full w-4/5 grid-cols-1 pt-4 text-sm md:w-1/6;
+}
+
+.modal-right {
+    @apply mx-auto ms-4 grid h-full w-4/5 grid-cols-1 pt-2 text-sm md:w-1/6;
+}
+
+.links ul {
+    list-style-type: disc;
+}
+
+.primary-image img {
+    object-fit: fill;
+}
+
+#contact-modal .modal {
+    @apply mx-auto w-2/3;
+}
+

@@ -13,7 +13,7 @@
         "bgImage": "ssp/ssp-logo.png",
         "bgPositionX": "-30px",
         "bgPositionY": "-50px",
-        "links": [{"title": "Additional Contract Info (sam.gov)", "url": "https://sam.gov/opp/2256b7a820714afb89915925eed9b856/view"}]
+        "links": [{ "title": "Additional Contract Info (sam.gov)", "url": "https://sam.gov/opp/2256b7a820714afb89915925eed9b856/view" }]
     },
     {
         "id": "project-api",
@@ -42,14 +42,14 @@
         "primaryImage": "flag-board/dashboard.png",
         "bgImage": "flag-board/flag-board-bg.png",
         "images": [
-            {"src": "flag-board/dashboard.png", "title": "Main Dashboard"},
-            {"src": "flag-board/login.png", "title": "Admin Login"},
-            {"src": "flag-board/reports.png", "title": "Reports"},
-            {"src": "flag-board/new-request.png", "title": "New Flag Request"},
-            {"src": "flag-board/edit-request.png", "title": "Edit Flag Request"},
-            {"src": "flag-board/edit-request-validation.png", "title": "Edit Flag Request Validation"},
-            {"src": "flag-board/kiosk-2.jpg", "title": "Old paper-based Flag Board"},
-            {"src": "flag-board/kiosk-3.jpg", "title": "Kiosk running the Flag Board on factory floor."}
+            { "src": "flag-board/dashboard.png", "title": "Main Dashboard" },
+            { "src": "flag-board/login.png", "title": "Admin Login" },
+            { "src": "flag-board/reports.png", "title": "Reports" },
+            { "src": "flag-board/new-request.png", "title": "New Flag Request" },
+            { "src": "flag-board/edit-request.png", "title": "Edit Flag Request" },
+            { "src": "flag-board/edit-request-validation.png", "title": "Edit Flag Request Validation" },
+            { "src": "flag-board/kiosk-2.jpg", "title": "Old paper-based Flag Board" },
+            { "src": "flag-board/kiosk-3.jpg", "title": "Kiosk running the Flag Board on factory floor." }
         ],
         "bgPositionX": "-30px",
         "bgPositionY": "-130px",
@@ -67,8 +67,8 @@
         "primaryImage": "concert-web/concert-bg.png",
         "bgImage": "concert-web/concert-bg.png",
         "images": [
-            {"src": "concert-web/concert-nav.png", "title": "Administration"},
-            {"src": "concert-web/concert-admin.png", "title": "Administration"}
+            { "src": "concert-web/concert-nav.png", "title": "Administration" },
+            { "src": "concert-web/concert-admin.png", "title": "Administration" }
         ],
         "bgPositionX": "-30px",
         "bgPositionY": "-65px",
@@ -87,9 +87,7 @@
         "bgImage": "sms/sms-alert.jpg",
         "bgPositionX": "-30px",
         "bgPositionY": "-40px",
-        "links": [
-            {"title": "Nexmo (now Vonage) - Communication APIs", "url": "https://www.vonage.com/communications-apis/"}
-        ]
+        "links": [{ "title": "Nexmo (now Vonage) - Communication APIs", "url": "https://www.vonage.com/communications-apis/" }]
     },
     {
         "id": "project-web",
@@ -119,15 +117,13 @@
         "primaryImage": "/pm-dashboard/pm-db-1.png",
         "bgImage": "/pm-dashboard/pm-db-1.png",
         "images": [
-            {"src": "pm-dashboard/pm-db-2.png", "title": "Project Details - Checklist"},
-            {"src": "pm-dashboard/pm-db-3.png", "title": "Checklist Item Instructions"},
-            {"src": "pm-dashboard/pm-db-4.png", "title": "Extended project details and health"},
-            {"src": "pm-dashboard/pm-db-5.png", "title": "Client Tasks"}
+            { "src": "pm-dashboard/pm-db-2.png", "title": "Project Details - Checklist" },
+            { "src": "pm-dashboard/pm-db-3.png", "title": "Checklist Item Instructions" },
+            { "src": "pm-dashboard/pm-db-4.png", "title": "Extended project details and health" },
+            { "src": "pm-dashboard/pm-db-5.png", "title": "Client Tasks" }
         ],
         "bgPositionX": "0",
         "bgPositionY": "0",
-        "links": [
-            {"title": "Scott Cook Innovation Award Nominee", "url": "/projects/pm-dashboard-innovation-award-entry.pdf"}
-        ]
+        "links": [{ "title": "Scott Cook Innovation Award Nominee", "url": "/projects/pm-dashboard-innovation-award-entry.pdf" }]
     }
 ]

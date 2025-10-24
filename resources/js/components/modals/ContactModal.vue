@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import Modal from '@/js/components/Modal.vue';
-import { ref, onMounted, onUnmounted } from 'vue';
-import '../../../css/modal.css';
+import { onMounted, onUnmounted, ref } from 'vue';
 
-const turnstileSitekey = "0x4AAAAAAB73z-5VUEsEm3_p";
+const turnstileSitekey = '0x4AAAAAAB73z-5VUEsEm3_p';
 
 const form = ref({
     email: '',
@@ -108,10 +107,10 @@ const handleMessageChange = (event: Event) => {
 };
 
 function onLoadTurnstile() {
-    turnstileWidgetId.value = turnstile.render("#turnstile-container", {
+    turnstileWidgetId.value = turnstile.render('#turnstile-container', {
         sitekey: turnstileSitekey,
         callback: function (token: string) {
-            console.log("Turnstile challenge completed:", token);
+            console.log('Turnstile challenge completed:', token);
             turnstileToken.value = token;
         },
     });
@@ -179,7 +178,7 @@ const submitForm = async () => {
             },
             body: JSON.stringify({
                 ...form.value,
-                turnstile_token: turnstileToken.value
+                turnstile_token: turnstileToken.value,
             }),
         });
 
@@ -207,13 +206,14 @@ const submitForm = async () => {
 </script>
 
 <template>
-    <Modal modalId="contact-modal"
-           title="Contact Me"
-           :showSubmit="true"
-           :submitDisabled="!isFormValid || isFormSubmitted"
-           submitText="Send Message"
-           :isLoading="isLoading"
-           @submit="submitForm"
+    <Modal
+        modalId="contact-modal"
+        title="Contact Me"
+        :showSubmit="true"
+        :submitDisabled="!isFormValid || isFormSubmitted"
+        submitText="Send Message"
+        :isLoading="isLoading"
+        @submit="submitForm"
     >
         <!-- Contact Modal -->
         <div class="flex w-full flex-col gap-4 p-6">
@@ -236,7 +236,7 @@ const submitForm = async () => {
                         placeholder="your.email@example.com"
                         :class="{
                             'border-red-500': errors.email || validationErrors.email,
-                            'border-success': form.email && !validationErrors.email && !errors.email
+                            'border-success': form.email && !validationErrors.email && !errors.email,
                         }"
                     />
                     <div v-if="errors.email" class="error">{{ errors.email[0] }}</div>
@@ -245,15 +245,17 @@ const submitForm = async () => {
 
                 <div>
                     <label for="subject">Subject:</label>
-                    <input id="subject"
+                    <input
+                        id="subject"
                         :value="form.subject"
                         @change="handleSubjectChange"
                         type="text"
                         placeholder="Hey!!!"
                         :class="{
                             'border-red-500': errors.subject || validationErrors.subject,
-                            'border-success': form.subject && !validationErrors.subject && !errors.subject
-                        }" />
+                            'border-success': form.subject && !validationErrors.subject && !errors.subject,
+                        }"
+                    />
                     <div v-if="errors.subject" class="error">{{ errors.subject[0] }}</div>
                     <div v-if="validationErrors.subject" class="error">{{ validationErrors.subject }}</div>
                 </div>
@@ -268,7 +270,7 @@ const submitForm = async () => {
                         rows="4"
                         :class="{
                             'border-error': errors.message || validationErrors.message,
-                            'border-success': form.message && !validationErrors.message && !errors.message
+                            'border-success': form.message && !validationErrors.message && !errors.message,
                         }"
                     ></textarea>
                     <div v-if="errors.message" class="error">{{ errors.message[0] }}</div>

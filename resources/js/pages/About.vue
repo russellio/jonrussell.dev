@@ -55,13 +55,7 @@ const approaches = [
                             </p>
                         </div>
                         <div>
-                            <button
-                                id="about-projects-button"
-                                data-track-click="about:projects-button"
-
-                                class="small"
-                                data-astro-cid-7mc3ftep=""
-                            >
+                            <button id="about-projects-button" data-track-click="about:projects-button" class="small" data-astro-cid-7mc3ftep="">
                                 Projects
                             </button>
                         </div>
@@ -69,22 +63,12 @@ const approaches = [
                     <div class="skills">
                         <div class="title2">My toolkit</div>
                         <div class="skills-list">
-                            <span class="skill-block">JavaScript</span
-                            ><span class="skill-block">Node.js</span
-                            ><span class="skill-block">TypeScript</span
-                            ><span class="skill-block">CSS</span
-                            ><span class="skill-block">SASS</span
-                            ><span class="skill-block">SQL</span
-                            ><span class="skill-block">Vite</span
-                            ><span class="skill-block">webpack</span
-                            ><span class="skill-block">Astro</span
-                            ><span class="skill-block">Jest</span
-                            ><span class="skill-block">Cypress</span
-                            ><span class="skill-block">CLI</span
-                            ><span class="skill-block">Git</span
-                            ><span class="skill-block">SEO</span
-                            ><span class="skill-block">a11y</span
-                            ><span class="skill-block">Vercel</span>
+                            <span class="skill-block">JavaScript</span><span class="skill-block">Node.js</span
+                            ><span class="skill-block">TypeScript</span><span class="skill-block">CSS</span><span class="skill-block">SASS</span
+                            ><span class="skill-block">SQL</span><span class="skill-block">Vite</span><span class="skill-block">webpack</span
+                            ><span class="skill-block">Astro</span><span class="skill-block">Jest</span><span class="skill-block">Cypress</span
+                            ><span class="skill-block">CLI</span><span class="skill-block">Git</span><span class="skill-block">SEO</span
+                            ><span class="skill-block">a11y</span><span class="skill-block">Vercel</span>
                         </div>
                         <!-- <div>
           <a href="/resume" data-track-click="about:resume-button" tabindex="-1"

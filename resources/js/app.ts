@@ -15,11 +15,11 @@ createInertiaApp({
         import.meta.glob<DefineComponent>('./pages/**/*.vue')
       ),
     setup({ el, App, props, plugin }) {
-      const pinia = createPinia();
+        const pinia = createPinia();
         createApp({ render: () => h(App, props) })
-          .use(pinia)
-          .use(plugin)
-          .mount(el);
+            .use(pinia)
+            .use(plugin)
+            .mount(el);
     },
     progress: {
         color: '#4B5563',
